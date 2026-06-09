@@ -1,1 +1,4 @@
 dataset/
+backend-ai-engine/venv/
+backend-ai-engine/__pycache__/
+/dashboard/node_modules/
