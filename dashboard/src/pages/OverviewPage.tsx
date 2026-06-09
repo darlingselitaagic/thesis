@@ -4,8 +4,9 @@ import PageHeader from "../components/PageHeader"
 import MetricCard from "../components/MetricCards"
 import {
   getWazuhAgents,
-  getXdrAlerts,
+  getLogHistory,
   getXdrResponses,
+  syncWazuhLogs,
   type WazuhAgent,
   type XdrAlert,
   type XdrResponse
@@ -16,14 +17,16 @@ export default function OverviewPage() {
   const [responses, setResponses] = useState<XdrResponse[]>([])
   const [agents, setAgents] = useState<WazuhAgent[]>([])
 
-  useEffect(() => {
-    Promise.all([getXdrAlerts(), getXdrResponses(), getWazuhAgents()])
+useEffect(() => {
+  syncWazuhLogs().then(() => {
+    Promise.all([getLogHistory(), getXdrResponses(), getWazuhAgents()])
       .then(([alertsData, responsesData, agentsData]) => {
         setAlerts(alertsData)
         setResponses(responsesData)
         setAgents(agentsData)
       })
-  }, [])
+  })
+}, [])
 
   const critical = alerts.filter(a => a.classification === "Critical").length
   const activeAgents = agents.filter(a => a.status === "active").length

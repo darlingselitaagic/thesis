@@ -1,0 +1,1536 @@
+\documentclass[12pt,a4paper]{report}
+
+% ── Packages ──────────────────────────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{microtype}
+\usepackage{lmodern}
+\usepackage{csquotes}
+\usepackage{float}
+\usepackage{xurl}
+
+% ── Page Geometry ──────────────────────────────────────────────────────────────
+\geometry{
+  a4paper,
+  top=2.5cm,
+  bottom=2.5cm,
+  left=3cm,
+  right=2.5cm
+}
+
+% ── Line Spacing ───────────────────────────────────────────────────────────────
+\onehalfspacing
+
+% ── Header / Footer ───────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\small AI-Driven XDR Simulation System}
+\lhead{\small Diploma Thesis -- Preliminary Report}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ── Section Title Formatting ──────────────────────────────────────────────────
+\titleformat{\chapter}[hang]{\Large\bfseries}{Chapter \thechapter.}{0.5em}{}
+\titleformat{\section}[hang]{\large\bfseries}{\thesection}{0.5em}{}
+\titleformat{\subsection}[hang]{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+\titlespacing*{\chapter}{0pt}{20pt}{15pt}
+\titlespacing*{\section}{0pt}{14pt}{8pt}
+\titlespacing*{\subsection}{0pt}{10pt}{6pt}
+
+% ── Hyperref Setup ────────────────────────────────────────────────────────────
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue,
+  citecolor=blue,
+  pdftitle={AI-Driven XDR Simulation System},
+  pdfauthor={Darling Selita}
+}
+
+% ── Document ──────────────────────────────────────────────────────────────────
+\begin{document}
+
+% ── Title Page ────────────────────────────────────────────────────────────────
+\begin{titlepage}
+  \centering
+  \vspace*{2cm}
+  {\LARGE\bfseries Diploma Thesis -- Preliminary Report\par}
+  \vspace{1.5cm}
+  {\Large\bfseries AI-Driven XDR (Extended Detection and Response) Simulation System\par}
+  \vspace{2cm}
+  {\large Darling Selita\par}
+  \vspace{1cm}
+  {\normalsize 2026\par}
+  \vfill
+\end{titlepage}
+
+% ── Abstract (Albanian) ───────────────────────────────────────────────────────
+\chapter*{Abstrakt}
+\addcontentsline{toc}{chapter}{Abstrakt}
+
+Teknologjia ndodhet në një nga periudhat më kulminante të saj, duke sjellë zhvillim dhe
+përmirësim të vazhdueshëm në të gjitha fushat e jetës sonë të përditshme. Por, me rritjen e
+varësisë ndaj sistemeve digjitale apo të automatizimeve, duhet të merret parasysh dhe siguria e
+tyre, në mënyrë që këto sisteme të ofrojnë shërbim të mirë dhe të vazhdueshëm, duke e bërë
+kështu, sigurinë e të dhënave një sfidë të madhe për mbarëvajtjen.
+
+Sistemet tradicionale të përdorura, si SIEM, EDR, fokusohen kryesisht tek parandalimi i këtyre
+sulmeve, duke skanuar herë pas herë log-et e sistemit, në mënyrë që të kuptojë se kur një
+aktivitet është normal apo i dyshimtë, duke kërkuar gjithashtu një ndërhyrje njerëzore për të
+kuptuar se çfarë ka ndodhur dhe si duhet përgjigjur. Këtu hyn në punë XDR, një sistem i cili
+synon të integrojë fjalën e fundit të teknologjisë, Inteligjencën Artificiale, dhe nëpërmjet një
+baze të qendërzuar të të dhënave nga ku të gjithë kompanitë, të cilat shesin shërbime për
+mbrojtjen kibernetike, jo vetëm marrin të dhëna por edhe e përditësojnë këtë bazë të dhënash
+në rast të një virusi apo anomalie të re të shfaqur në sistemet e tyre përkatëse, të automatizojë
+të gjithë procesin e kundërpërgjigjes ndaj sulmeve apo incidenteve.
+
+Kjo temë propozon zhvillimin e një sistemi simulues XDR, të bazuar në Inteligjencë Artificiale,
+i cili do ketë si qëllim jo vetëm analizimin e log-eve të sistemit, por edhe marrjen e një
+vendimi autonom për kundërpërgjigje. Ky sistem XDR do të përdorë Machine Learning, për të
+trajnuar si të identifikohen sjellje jo-normale, si dhe të simulohen veprime për të izoluar dhe
+bllokuar një proces apo një instancë të dyshimtë.
+
+Qëllimi përfundimtar, përtej simulimit, do të jetë vlerësimi i efikasitetit dhe funksionalitetit të
+kësaj mënyre të të punuarit, për të vlerësuar më pas gjithashtu dhe besueshmërinë, saktësinë
+dhe sigurinë e vendimmarrjes së këtij sistemi apo çdo lloj sistemi inteligjent.
+
+\medskip
+\noindent\textbf{Fjalë kyçe:} \textit{Inteligjencë Artificiale, Siguri e të dhënave, SIEM, EDR,
+XDR, Machine Learning, Analizimi i log-eve, Sisteme digjitale, Vendimmarrje autonome.}
+
+% ── Abstract (English) ───────────────────────────────────────────────────────
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+Technology is in one of its most culminating periods, bringing continuous development and
+improvement in all areas of our daily lives. But, with the increasing dependence on digital
+systems or automation, their security must also be taken into account, so that these systems
+provide good and continuous service, thus making data security a major challenge for the
+well-being.
+
+Traditional systems used, such as SIEM and EDR, focus mainly on preventing attacks by scanning
+system logs periodically, in order to understand when an activity is normal or suspicious, also
+requiring human intervention to understand what happened and how to respond. This is where XDR
+comes into play---a system that aims to integrate the latest technology, Artificial Intelligence,
+and through a centralized database from which all companies that sell cyber protection services
+not only receive data but also update this database in the event of a new virus or anomaly
+appearing in their respective systems, to automate the entire process of responding to attacks or
+incidents.
+
+This thesis proposes the development of an XDR simulation system, based on Artificial
+Intelligence, which will aim not only to analyse system logs, but also to make an autonomous
+decision to respond. This XDR system will use Machine Learning to train how to identify abnormal
+behaviour, as well as simulate actions to isolate and block a suspicious process or instance.
+
+The ultimate goal, beyond simulation, will be to evaluate the efficiency and functionality of
+this way of working, to then also assess the reliability, accuracy, and security of
+decision-making of this system or any type of intelligent system.
+
+\medskip
+\noindent\textbf{Keywords:} \textit{Artificial Intelligence, Data Security, SIEM, EDR, XDR,
+Machine Learning, Log Analysis, Digital Systems, Autonomous Decision-Making.}
+
+% ── Table of Contents ─────────────────────────────────────────────────────────
+\tableofcontents
+\clearpage
+
+\listoffigures
+\clearpage
+
+% ══════════════════════════════════════════════════════════════════════════════
+\chapter{Introduction}
+% ══════════════════════════════════════════════════════════════════════════════
+
+In modern times, technology hasn't been stopping one bit, and has kept climbing the steps of
+evolution rapidly, therefore transforming our everyday life, and keeping us in touch with it for
+our day-to-day activities. Not only automated systems, but also digital systems and big complex
+infrastructures, that tech companies use to operate their work environment on, have been deeply
+embedded with data collection \& processing, communication and service delivery. However, these
+advancements come with their own problems, one of which---if not the most important one---is the
+cybersecurity threats that these infrastructures face every day.
+
+As more organizations, not only in IT or Cybersecurity especially, depend on these customs,
+there is also a big need of insurance for these services, not only that they function well, but
+also that their service is uninterrupted, and the data being used is correct and not always
+tampered with, as well as available to the instances who need it. Therefore, Cybersecurity has
+become a crucial component to keeping these systems and infrastructures running at all times and
+without errors.
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Problem Statement}
+% ──────────────────────────────────────────────────────────────────────────────
+
+Cybersecurity solutions that are mostly used as of now are SIEMs (Security Information Event
+Management) and EDRs (Endpoint Detection Services), to monitor system logs and detect potential
+suspicious activity, or potential threats. This is done continuously, thus giving these systems a
+hand when comparing normal and abnormal activity.
+
+However, despite their good traits and effectiveness, these solutions present limitations for the
+current rate of threats that systems face. They sometimes require cyber threat analysts to be
+involved in the decision-making process, in order to better analyse alerts and investigate these
+incidents, thus leading to a considerable delay in response time and an increase in the amount of
+work from these human experts. But as mentioned above, these limitations are currently present,
+and if we're thinking ahead, there needs to be consideration for the advancements of these
+threats, of the ways they infiltrate the system, and how hard they hit.
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Motivation}
+% ──────────────────────────────────────────────────────────────────────────────
+
+With the problem being apparent, and having a considerable impact on security, XDR is not only a
+solution to the problem, but also a stepping stone for the next era of incident response systems,
+coupled with the advancements of AI, offering a better range of support and detection abilities,
+as well as more automated responses that greatly reduce alert lateness. It is also important to
+mention that the data that these systems will be fed with will not be only new data, or only old
+data, but a variation that will help the AI model to have a better sense of direction when
+determining whether a log is suspicious or not. The costs of developing these solutions also
+greatly overextend the cost of human labour, making it a better choice for the future.
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Research Questions}
+% ──────────────────────────────────────────────────────────────────────────────
+
+The main goal of this thesis is to find out how effective AI and powerful ML algorithms are when
+integrated in real-world Extended Detection and Response Systems (XDRs). The concrete questions
+raised in this thesis are:
+
+\begin{itemize}
+  \item[\textbf{RQ1:}] Can an Artificial Intelligence-driven XDR System accurately identify
+  suspicious logs or events using a centralized telemetry system along with continuous log
+  monitoring and analysis?
+
+  \item[\textbf{RQ2:}] How much can Machine Learning algorithms improve threat detection, event
+  correlation and risk mitigation?
+
+  \item[\textbf{RQ3:}] Is it possible to simulate an almost fully automated incident response
+  mechanism with an AI + ML Engine, while maintaining the level of reliability and accuracy that
+  normal XDR solutions offer?
+
+  \item[\textbf{RQ4:}] How effective is intrusion detection and event correlation in early
+  mitigation of sequential or multi-scale attacks?
+\end{itemize}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Aim and Objectives}
+% ──────────────────────────────────────────────────────────────────────────────
+
+The main objective of this thesis is to design and develop a miniature version of an XDR system,
+based on Artificial Intelligence and Machine Learning. To destructurize this objective, the
+following course of action is:
+
+\begin{itemize}
+  \item Analyse existing Cybersecurity solutions (SIEM, EDR, SOAR).
+  \item Go through Machine Learning techniques to find what is best suited to detecting
+  suspicious activity.
+  \item Design a system capable of pulling and analysing data from a data source, as well as
+  develop an AI model to detect anomalies and return the appropriate response such as target
+  isolation, blocking and process killing.
+  \item Evaluate the metrics of this system, to determine if it is reliable and safe to be
+  applied on a much larger scale.
+\end{itemize}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Methodological Review}
+% ──────────────────────────────────────────────────────────────────────────────
+
+The first part of the study involves an overview of existing Cybersecurity Solutions, AI-based
+detection techniques and XDR systems, found in academic reviews and research as well as industry
+standards such as NIST or ISO.
+
+The next part will cover the design and development of the proposed XDR system, with the focus
+of improving the existing ones. Based on the review, there will need to be an assessment of the
+correct technologies and tools needed to develop this system, to not only be functional, but if
+successful, even scalable, with focus on data processing quality and model selection.
+
+This step will also involve finding the appropriate datasets to train the model with, once
+selected, to then apply ML algorithms to detect suspicious behaviour and simulate needed
+responses.
+
+After all of that, the last step will be to thoroughly analyse the system, using performance
+metrics such as detection accuracy, response effectiveness towards solving the problem,
+reliability and availability. This will also help when drawing conclusions, in order to determine
+any setbacks that will need further research or development.
+
+% ══════════════════════════════════════════════════════════════════════════════
+\chapter{Literature Review}
+% ══════════════════════════════════════════════════════════════════════════════
+
+This chapter represents a view of the existing literature for Cybersecurity solutions and defence
+systems, in regard to the evolution of complexity and intensity of cyber threats. As the systems
+that people use every day continue to scale based on their needs, the requirement for good
+security to prevent unauthorized access to these systems becomes more crucial.
+
+The primary parts will include an analysis of SIEM, EDR and SOAR systems, how they work and how
+effective they are with the current range of cyber threats, followed by the turning points that
+an XDR system will offer to solve existing problems or fatigue in regard to anomaly detection and
+resolution.
+
+This will be done by also expanding on the role of Artificial Intelligence and Machine Learning
+in enhancing such systems and building upon them, to improve these mechanics.
+
+Finally, the chapter will identify limitations and problems of current approaches, that also show
+the research gap, which in turn requires the innovation and development of systems such as XDRs.
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Cybersecurity Basics and Threat Environment}
+% ──────────────────────────────────────────────────────────────────────────────
+
+Big companies and organizations rely heavily on digital systems or platforms, which they use to
+offer their users their services. In the background, all these systems and platforms are run
+through data collection and interpretation subsystems, applied for communication, data storage
+and service delivery (CDNs). However, this also brings upon the issue of security, integrity and
+availability of these subsystems, as they are crucial to maintaining these platforms operational
+and running.
+
+Cyber threats have evolved almost at the same pace as technology advancements, thus making it
+difficult to maintain a level of security within the infrastructure. According to the MITRE
+ATT\&CK framework~\cite{ref1}, phishing (T1566) remains one of the most predominant attacks,
+occurring daily and directed to every endpoint of the infrastructure. The low cost -- high reward
+matrix makes it a very favourable decision for the attacker to use and establish a persistent
+connection with the victim, unknowingly.
+
+However, behind these statistics lies a vast amount of information regarding techniques, tactics
+and procedures, that helps cyber threat analysts better understand these attacks and how to
+interpret the alerts that a SIEM or an EDR show.
+
+The NIST framework~\cite{ref2} gives a clear overview of what an event is, how events are
+categorized, and how to know what to be aware of. It also emphasizes the need for incident
+response mechanisms, including protecting data (personal or business), as well as keeping
+integrity of the systems. The proposed XDR has the scope of doing so in a shorter amount of
+time, also keeping precision and correctness during the decision-making process.
+
+\begin{figure}[htbp]
+  \centering
+   \includegraphics[width=0.8\textwidth]{fig01_nist_lifecycle.png}
+  \caption{Incident Response Lifecycle (NIST.SP.800-61r2)}
+  \label{fig:nist_lifecycle}
+\end{figure}
+
+The other problem that needs to be addressed is the increase of better set-out attacks, that
+require a more complex course of action needed to be taken in order to defend and respond.
+Even with the use of the MITRE ATT\&CK framework, which documents new methods, the responses
+are still delayed and slow due to interpretation or understanding of issues.
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Traditional Detection Systems: SIEM and EDR --- Procedure \& Limitations}
+% ──────────────────────────────────────────────────────────────────────────────
+
+Corporate security monitoring and compliance projects have traditionally started with Security
+Information and Event Management (SIEM) solutions. The main purpose of these systems is to
+collect log data and perform continuous checks, as well as work in parallel with other
+cybersecurity solutions like IDS (Intrusion Detection Systems) and IPS (Intrusion Prevention
+Systems) from which log data is also taken. Most SIEMs use a centralized language, translating
+the logs from their native language into one unified language~\cite{ref3}.
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.8\textwidth]{fig2_threat_detection_evolution.png}
+  \caption{Evolution of Threat Detection~\cite{ref3}}
+  \label{fig:evolution_detection}
+\end{figure}
+
+SIEMs have been used for years, but as noted before, the technology advancements have made it
+even more difficult to keep up with new and sophisticated threats. SIEMs remain a good choice for
+overall management, coupled with a very insightful dashboard in most cases, but when a fast-paced
+attack occurs, these systems may not be able to appropriately deliver a response in the required
+amount of time, resulting in loss of data, resources and time.
+
+On the other hand, Endpoint Detection \& Response (EDR) systems are concentrated on identifying
+and reacting to the unique threats discovered on endpoints (end-users or workers of a
+company/organization), giving a much more focused insight into endpoint activities, monitoring,
+detection and appropriate response. Due to better visibility from an EDR, cyber threat analysts
+are more prone to using it on a day-to-day basis~\cite{ref4}.
+
+However, EDR offers a more centralized view of the data but is limited to a single endpoint, or
+a small number of endpoints, making it harder to manage a large number of endpoints in real time.
+This is the case for most organizations, which have many devices---not just computers, but
+servers and CDNs as well---thus bringing out the limitations of this technology.
+
+\begin{figure}[htbp]
+  \centering
+   \includegraphics[width=0.8\textwidth]{fig3_edr_methodology.png}
+  \caption{EDR Work Methodology~\cite{ref4}}
+  \label{fig:edr_methodology}
+\end{figure}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Extended Detection and Response (XDR)}
+% ──────────────────────────────────────────────────────────────────────────────
+
+To reiterate the previously mentioned problem: the cyber threats of today are much more complex
+and scaled, and with traditional systems you can only achieve so much protection against them. On
+these grounds, with the recent developments of AI and cross-layer visibility, a new security
+approach has been established---the Extended Detection and Response system, XDR---showing a
+significant improvement in threat visibility, detection accuracy and emergence when responding to
+an incident.
+
+An XDR is not the kind of system that should be deployed everywhere, as an EDR and SIEM can work
+together just fine if the architecture is not complex and the system is not easily accessible.
+An XDR handles information from various sources, much like a SIEM, collects all these logs, and
+then initiates a specific response based on what the logs convey. Sources of information include
+endpoints, networks, cloud architectures and so on. The effectiveness of this system is higher
+than an EDR or a SIEM by themselves, because of the correlation between different sources of
+information and layers, making it have a better understanding of security events and enabling
+faster detection of threats.
+
+According to Microsoft, an XDR solution is designed to unify the work of two or more separate
+systems into one, reducing the complexity of having to manage and maintain different security
+tools~\cite{ref5}.
+
+One of the advantages of these systems is the ability to automate their actions and responses
+based on analytics and previous data, which they take through large and public data sets, and
+then use to continuously update and train their machine learning algorithms~\cite{ref6}. This
+way, things like isolating compromised endpoints, blocking malicious processes or events,
+restricting access to the network, or even fully blocking a specific endpoint are things that now
+do not require any manual intervention or predefined rules.
+
+Another important source of information for XDR systems is the MITRE ATT\&CK framework, a
+globally accessible knowledge base of adversary tactics and techniques, based on real-world
+observations~\cite{ref7}. It provides structured information about TTPs (Techniques, Tactics and
+Procedures) that the XDR can use to classify and correlate malicious behaviour throughout system
+nodes and layers of the architecture.
+
+Despite this, it should be taken into account that an XDR solution does not automatically fix any
+shortcomings that an organization might have. It is still an imperfect concept, with most XDR
+systems still relying on predefined sets of rules, having issues with the correlation between
+different logs from different sources due to training limitations, and most importantly, still
+potentially requiring human intervention in the case of unique alerts or final response decisions.
+
+As cybersecurity threats become more sophisticated, the second generation of XDR systems began
+to incorporate AI and machine learning technologies altogether. These advancements allowed for
+better anomaly detection, predictive analytics and automated response capabilities. XDR systems
+could now learn from data, and directly apply the knowledge learned in response to an
+incident~\cite{ref6}.
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Artificial Intelligence and Machine Learning in Cybersecurity}
+% ──────────────────────────────────────────────────────────────────────────────
+
+The increasing difficulty of having to face complex and frequent cyberattacks has raised serious
+doubts about the rule-based, traditional security systems. As a result, with the second
+generation of XDRs, AI and Machine Learning technologies have been embraced as much as possible
+in an effort to raise the system's awareness to patterns and malicious intents, through analysing
+large volumes of past data (datasets) and present data (logs arriving to the system through
+endpoints, layers, network, etc).
+
+The integration of Artificial Intelligence and Machine Learning into cybersecurity has driven a
+transformational shift, significantly enhancing the ability to detect, respond to and mitigate
+complex cyber threats~\cite{ref8}, with AI becoming a cornerstone in advancing cyber security,
+offering innovative solutions to detect and mitigate cyber threats~\cite{ref9}.
+
+\begin{figure}[htbp]
+  \centering
+   \includegraphics[width=0.8\textwidth]{fig4_ai_ml_techniques.png}
+  \caption{The key AI and ML techniques applied in cybersecurity~\cite{ref19_fig}}
+  \label{fig:ai_ml_techniques}
+\end{figure}
+
+AI and ML are recognized as effective tools that enhance cybersecurity systems and allow for
+real-time analytics and decision-making while supporting applications such as intrusion detection,
+malware detection and network security~\cite{ref10}. AI gives systems the ability to think and
+reason just like humans, incorporating pattern-recognition and problem-solving. In the vast world
+of machine learning techniques used in cybersecurity, three key approaches stand out: supervised,
+unsupervised and reinforcement learning~\cite{ref11}.
+
+\begin{figure}[htbp]
+  \centering
+   \includegraphics[width=0.7\textwidth]{fig5_zero_day_detection.png}
+  \caption{Zero-Day Detection Rate by Approach~\cite{ref11}}
+  \label{fig:zero_day_detection}
+\end{figure}
+
+% ──────────────────────────────────────────────
+\subsection{Learning Methods Overview}
+% ──────────────────────────────────────────────
+
+In concrete terms, Supervised Learning is designed to work with the use of labels, giving the
+XDR system a clear path of how to detect and correlate between irregular or suspicious patterns.
+Unsupervised Learning is used without specific labels, giving the system a different
+``perspective'' of anomalies or unusual patterns. Lastly, reinforcement learning is an approach
+where agents essentially learn how to spot and contain malware by engaging in trial and error
+within simulated environments. The learning agent decides whether to classify, quarantine or
+allow a sample, adjusting its strategy based on the outcomes~\cite{ref12}.
+
+Supervised learning shines in controlled settings, unsupervised learning in spotting zero-day
+attacks, while reinforcement learning shines in adapting to ever-changing, adversarial
+situations~\cite{ref12}.
+
+This gives the system the possibility to handle any incoming situation and make sure to properly
+mitigate an incoming issue. One of the most used features of security systems is Anomaly
+Detection, focusing on identifying deviations from normal patterns (normal system behaviour),
+allowing organizations to detect potentially malicious activities before dealing any significant
+damage to the core structure. These detection sub-systems are trained through the use of large
+datasets, one of which is the CICIDS2017 dataset, developed by the Canadian Institute for
+Cybersecurity~\cite{ref13}.
+
+To reiterate, these advancements in AI and ML are good, but also present some issues and
+challenges when applying them in real-world solutions. First, the issue of diversity between logs
+and information that systems are trained with. If the data is not diverse enough, the system will
+not be able to see through unique or zero-day attacks. Conversely, if the dataset is more diverse
+than usual, the recognition of daily suspicious patterns becomes hard to see and prolongs
+automated responses for small anomalies.
+
+It is also worth noting that AI allows new vulnerabilities in cybersecurity. Criminals,
+adversaries, and malicious actors use AI and other technologies to circumvent detection systems
+and automate attacks with minimal human intervention. The dual-use nature of AI raises major
+risks in the areas of cybersecurity, privacy, and public trust~\cite{ref14}.
+
+\begin{figure}[htbp]
+  \centering
+   \includegraphics[width=0.85\textwidth]{fig6_ai_threats_taxonomy.png}
+  \caption{Taxonomy of AI-Driven Cybersecurity Threats and Corresponding Defensive
+  Strategies~\cite{ref14}}
+  \label{fig:ai_threats_taxonomy}
+\end{figure}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Log Analysis and Automated Response Systems}
+% ──────────────────────────────────────────────────────────────────────────────
+
+The analysis of logs for anomalies is an important research topic with practical importance in
+the field of failure analysis and security threat detection. Logs are generated by software-driven
+applications running on systems or devices to provide information to aid software developers and
+system engineers with their analysis of system state and condition~\cite{ref15}. Logs are
+required to be generated by any software in order for the security systems to monitor ongoing
+processes and maintain a level of security, by detecting any unusual patterns or investigating
+incidents based on suspicious activity. Due to the increasing volume and complexity of this
+generated data, effective log management and analysis is being prioritized for development, as it
+is one of the most effective ways to improve threat detection.
+
+% ──────────────────────────────────────────────
+\subsection{Currently Well-Established Security Systems \& Innovations}
+% ──────────────────────────────────────────────
+
+Currently, the most utilized system for gathering logs and processing extracted information are
+SIEMs, with notable mentions such as Microsoft Sentinel and Splunk. These systems collect,
+aggregate and correlate log data, empowering network defenders to monitor activity and uncover
+advanced cyberthreats~\cite{ref16}. The correlation of events from multiple platforms helps
+detect sequences of related events and highlight abnormalities that may not be immediately visible
+to a human when manually checking the logs~\cite{ref17}.
+
+Setting SIEMs aside, most organizations that require cybersecurity services rely heavily on
+automatic response systems, such as SOAR (Security Orchestration, Automation, Response). These
+systems not only automate their responses based on the detected pattern of abnormalities, but
+also co-operate with other security tools to implement a specific course of action, coordinated
+throughout multiple tools, against any suspicious activity that is detected~\cite{ref16}. The
+responses can vary from normal ones, such as alert generation or blocking suspicious IP addresses,
+to complex ones, such as isolating a compromised device or terminating a malicious process.
+
+However, these security systems still work based on predefined static rules, which limit their
+ability to evolve and handle complex unknown threats, with humans having to check every alert
+and decide whether the appropriate response is being used by the system.
+
+\begin{figure}[htbp]
+  \centering
+   \includegraphics[width=0.75\textwidth]{fig7_ai_soar.png}
+  \caption{Integration of AI/ML into SOAR platforms}
+  \label{fig:ai_soar}
+\end{figure}
+
+These limitations, along with the evolving cycle that threats have gone through---from virus
+propagation and phishing, to large-scale attacks that blend stealth, automation and
+persistence~\cite{ref18}---have shifted the cybersecurity field towards the AI approach, where
+more intelligent systems can be developed to effectively detect, respond to, and mitigate even
+complex cyber-attacks.
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Autonomous AI and Research Gap}
+% ──────────────────────────────────────────────────────────────────────────────
+
+To reinforce what has been established in the previous sections, the evolution of cyber threats
+has increased the demand for protection against such threats, but with a difference from the
+traditional approach: more automation and intelligent adaptation to cyber threats (both known
+ones and zero-day) and minimal human intervention. While traditional security systems are
+momentarily still a secure choice for any organization or state infrastructure, with these
+threats advancing and with the way that organizations are scaling towards much bigger
+infrastructures, human intervention will become much harder and inefficient when faced with a
+multi-scale attack.
+
+% ──────────────────────────────────────────────
+\subsection{Autonomous AI Systems \& Agentic AI Security Solutions --- an Overview}
+% ──────────────────────────────────────────────
+
+Autonomous AI systems are designed for the simulation of decision-making processes, by firstly
+analysing and processing all the data given to them, determining visible patterns, and then
+deciding on the risks of different actions that they initiate. In security solutions, these
+sub-systems can work as a combination of different security tools, in order to detect and
+determine whether an attack is coming, and then execute response actions with minimal to no
+human intervention. One of the key advantages of these AI/ML systems is their ability to adapt
+to incoming threats, then develop specific patterns of response actions to deal with them,
+therefore evolving alongside the threats they are fighting against~\cite{ref19b}.
+
+\begin{figure}[htbp]
+  \centering
+   \includegraphics[width=0.75\textwidth]{fig7b_adaptive_defence.png}
+  \caption{Adaptive defence system for cybersecurity~\cite{ref20}}
+  \label{fig:adaptive_defence}
+\end{figure}
+
+The picture above gives an illustration of how an autonomous AI system currently works, divided
+into components for a better visual representation. First, we have the data capturing tools,
+which are usually watching and monitoring all the available events in the network for logs, such
+as Winpcap (Windows) and Libpcap (Linux)~\cite{ref20}. After that, data preprocessing tools
+consider all these events, and try to separate the ones that they have already learned from or
+mastered, filtering them out, and leaving only the ones that are unknown. The next process, of
+feature extraction, as its name suggests, extracts features that make this event unique and
+suspicious, which then pass it to analysis engines, in order to form a plan of response. After
+responding, the next layer of security activates, the Intrusion Detection System (IDS)~\cite{ref20}.
+
+\begin{figure}[htbp]
+  \centering
+   \includegraphics[width=0.7\textwidth]{fig8_agentic_ai.png}
+  \caption{Agentic AI anatomy~\cite{ref23}}
+  \label{fig:agentic_ai}
+\end{figure}
+
+Another example of an innovative technology that integrates AI and LLMs in cybersecurity is
+Agentic AI. Nowadays, most large language models serve a key role in data preprocessing, and
+response generation in regard to the question or problem posed. They are able to process very
+large amounts of data, recognize patterns, learn from them and identify any patterns that can
+result in malicious activity~\cite{ref22}. Moreover, its capability of reading rules and
+guidelines, along with detailed analysis about certain attacks, helps analysts create a more
+structured plan of response, even without executing that response itself~\cite{ref22}.
+
+% ──────────────────────────────────────────────
+\subsection{Current Problems of AI \& ML Security Solution Approach}
+% ──────────────────────────────────────────────
+
+\begin{figure}[htbp]
+  \centering
+   \includegraphics[width=0.75\textwidth]{fig9_ai_ml_security_automation.png}
+  \caption{AI/ML in Security Automation~\cite{ref21}}
+  \label{fig:ai_ml_security_automation}
+\end{figure}
+
+The aim of this thesis is not only to support the use of Artificial Intelligence in cybersecurity,
+but also to show the gaps that are currently present, and how the integration of Cybersecurity,
+AI and Machine Learning will help fill them. One challenge that we're faced with in this approach
+is the low amount of XDR-focused simulation systems. Existing studies focus on sole features,
+such as Machine Learning patterns for detecting anomalies, or rule-based automation using AI,
+therefore not creating a single instance application which integrates both these functions and
+gives more functionality in one tool~\cite{ref21}.
+
+Rule-based systems can also be integrated with other security systems, such as intrusion
+detection systems and SIEM systems~\cite{ref21}, thus making a more complete security solution
+that covers all the required functionalities.
+
+Another issue is the problem of trust in the accuracy of threat detection and response decisions.
+This is a persisting issue, present even in current deployed security solutions, where these
+systems lack the ability to adapt to dynamically evolving threats~\cite{ref22}, and therefore
+cannot be fully autonomous.
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Ethical and Operational Challenges of AI-Driven Cybersecurity Systems}
+% ──────────────────────────────────────────────────────────────────────────────
+
+Now that we have established the importance of integrating AI in cybersecurity, with two of the
+most important reasons being the speed with which threats are evolving day by day and the
+improvements that AI has shown for the effectiveness and efficiency of threat detection and
+response~\cite{ref24}, it is also worth noting that this integration should occur by taking into
+account several ethical and operational issues. The need for more intelligent systems should also
+bring the need for concerns over the reliability and transparency that these proposed security
+solutions offer, in comparison with conventional systems.
+
+\begin{figure}[htbp]
+  \centering
+   \includegraphics[width=0.5\textwidth]{fig10_chatgpt_disclaimer.png}
+  \caption{ChatGPT User Interface Disclaimer}
+  \label{fig:chatgpt_disclaimer}
+\end{figure}
+
+% ──────────────────────────────────────────────
+\subsection{Reliability and Accuracy of AI Decisions}
+% ──────────────────────────────────────────────
+
+One of the main concerns surrounding the current state of AI is the reliability that it offers
+to its users. From simple things like searching for information, asking a question or posing a
+problem, to complex situations such as detecting suspicious patterns and anomalies, there is
+always a label that any AI software uses to inform the entity using it that AI results may not
+be correct, and need further verification. Machine Learning models depend heavily on training
+data, pre-processed by LLMs, and issues such as data quality, bias, and incomplete or poisoned
+datasets (an attack technique used in Cybersecurity) can negatively affect detection accuracy and
+system performance~\cite{ref21}.
+
+For a normal user, this can only be a minor inconvenience, as the sources of information are
+infinite nowadays. However, for a cybersecurity system facing a cyber-attack, one wrong mistake
+can compromise entire systems or even the whole infrastructure of the organization, causing
+full-service disruption. Therefore, creating a set of standards and best practices to ensure
+high detection accuracy, and to minimize any decision errors, is a main priority.
+
+% ──────────────────────────────────────────────
+\subsection{Transparency and Explainability}
+% ──────────────────────────────────────────────
+
+Another critical issue that needs to be addressed is the transparency of a model's reasoning for
+its actions and responses. Most AI large language models work in the form of Black Box systems,
+which means that the process they go through to evaluate the best course of action is not easily
+interpretable~\cite{ref25}, making it harder for humans to understand how the model arrived at a
+certain point, and further validate its response. An analyst must make sure to understand why an
+alert was triggered, how the pattern was discovered, and if the action set as a response is
+correct or not. This is also a very important feature of the envisioned fully autonomous security
+systems, as the decisions of these systems should be fully explainable to ensure trust and
+accountability~\cite{ref25}.
+
+\begin{figure}[htbp]
+  \centering
+   \includegraphics[width=0.75\textwidth]{fig11_xai_vs_blackbox.png}
+  \caption{Explainable AI vs.\ Blackbox AI~\cite{ref26}}
+  \label{fig:xai_blackbox}
+\end{figure}
+
+% ──────────────────────────────────────────────
+\subsection{Security and Privacy Concerns (CIA Triad)}
+% ──────────────────────────────────────────────
+
+AI cybersecurity systems rely heavily on LLMs that process heavy amounts of data, be it data from
+external sources (e.g.\ CICIDS 2017/2018) or internal sources such as the logs generated by the
+events of the organisation infrastructure. Part of these internal logs might contain sensitive
+information that needs to be handled carefully. The CIA triad (Confidentiality, Integrity and
+Availability) forms the cornerstone of information security practice and theory, pointing out the
+most important objectives that should be followed by these systems to guarantee a safe environment.
+
+Furthermore, AI models as mentioned before might also be attacked through the datasets that they
+use to learn from, using data poisoning~\cite{ref27}, that involves either of the following
+actions:
+
+\begin{itemize}
+  \item Overfitting the data with the same type of information, thus making the model not
+  adaptable to new threats.
+  \item Incorrect logs that help create fake patterns that will be useless for detection or
+  response action decision.
+\end{itemize}
+
+Another present issue is the source of information from where these events and logs are
+generated. Second-generation XDR platforms quite often rely on different sources of information,
+making it important to evaluate the validity of the information being used, so as to not increase
+exposure to threats.
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.5\textwidth]{fig12_cia_triad.png}
+  \caption{CIA Triad~\cite{ref28}}
+  \label{fig:cia_triad}
+\end{figure}
+
+% ──────────────────────────────────────────────
+\subsection{Importance for Next-Generation Security Systems}
+% ──────────────────────────────────────────────
+
+Even though presented with the current challenges, the field of AI, especially Agentic AI, is
+evolving rapidly, making it possible to think that all these issues can be resolved. The envisioned
+intelligent systems will provide a much better experience than the current ones, with more
+autonomy in detection and decision-making. AI-driven security systems will cover multi-platform
+security functionalities (detection, adaptation and automated response actions), forming the
+foundation for fully automated and proactive system architectures~\cite{ref29}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{fig13_incident_response_lifecycle.png}
+  \caption{Incident Response Lifecycle~\cite{ref29}}
+  \label{fig:incident_response_lifecycle}
+\end{figure}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{XDR Systems and Compliance with Cybersecurity Frameworks}
+% ──────────────────────────────────────────────────────────────────────────────
+
+XDR + integrated AI systems are considered to be the next destination that cybersecurity is
+heading to, considering how threats are evolving and organizations are continuously scaling their
+infrastructure. XDR solutions really do offer compelling benefits; however, companies that are
+already implementing or will implement them face significant challenges~\cite{ref30}. These
+issues can be mitigated by implementing these solutions in compliance with specific standardized
+cybersecurity frameworks.
+
+The integration between these systems and cybersecurity frameworks helps identify threats earlier
+by using well-known techniques, as well as creating a standardized set of procedures that should
+be followed when responding to an incident. This section will further explain how XDR solutions
+can work together with some of the most relevant frameworks: MITRE ATT\&CK, NIST and ISO/IEC
+27001.
+
+% ──────────────────────────────────────────────
+\subsection{MITRE ATT\&CK Integration in XDR Systems}
+% ──────────────────────────────────────────────
+
+The MITRE ATT\&CK is one of the most widely used open-source frameworks in cybersecurity
+solutions. It is a globally accessible knowledge base, containing documentation about real-world
+threats, focusing on three key aspects of attacks: tactics, techniques and procedures
+(TTPs)~\cite{ref31}.
+
+This framework maps detected suspicious activities, reported in publicly accessed databases, to
+known attacker behaviour, helping organizations detect and neutralize threats much faster. Not
+only that, but XDR systems can ingest information from MITRE ATT\&CK, and use it to triage
+alerts, enrich cyber threat intelligence from different sources and ultimately test the
+effectiveness and accuracy of the incident response actions that it implements
+autonomously~\cite{ref32}.
+
+This framework also helps XDR systems to better understand cross-platform threats, such as
+multi-stage intrusions that usually happen in broader networks, where the XDR is capable of
+detecting suspicious patterns throughout all connected platforms.
+
+It is also worth noting that the TTPs, characteristic of MITRE ATT\&CK and the way their
+information is organized, make the use of this data for training AI models much more feasible.
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.8\textwidth]{fig14_mitre_attack.png}
+  \caption{The MITRE ATT\&CK Framework~\cite{ref33}}
+  \label{fig:mitre_attack}
+\end{figure}
+
+% ──────────────────────────────────────────────
+\subsection{NIST Cybersecurity Framework and XDR}
+% ──────────────────────────────────────────────
+
+The NIST Cybersecurity Framework (CSF) is a unified framework that provides a structured approach
+for managing a threat in a high-risk situation~\cite{ref34} using five core steps:
+
+\begin{enumerate}
+  \item Identify
+  \item Protect
+  \item Detect
+  \item Respond
+  \item Recover
+\end{enumerate}
+
+\begin{figure}[htbp]
+  \centering
+   \includegraphics[width=0.6\textwidth]{fig15_nist_framework.png}
+  \caption{NIST Framework~\cite{ref34}}
+  \label{fig:nist_framework}
+\end{figure}
+
+These steps are a functional dependency for XDR and AI security systems, which in turn provide
+much better detection and visibility towards incoming threats, enabling a fast incident response
+time. Using events from multiple points of the network and unifying data from these endpoints,
+XDR systems enable real-time threat detection and automated response actions.
+
+Furthermore, the NIST Cybersecurity Framework unifies the language for risk management, enabling
+organizations to align security operations with business and compliance requirements~\cite{ref34}.
+
+% ──────────────────────────────────────────────
+\subsection{ISO/IEC 27001 and XDR Systems}
+% ──────────────────────────────────────────────
+
+ISO/IEC 27001 is a cybersecurity standard recognized internationally for Information Security
+Management Systems (ISMS). It provides organizations with a structured framework of rules and
+procedures for managing sensitive data and guaranteeing its safety and security.
+
+This standard uses a risk-based approach, where organisations continuously monitor security risks
+through set policies and procedures, meaning that ISO 27001 provides a comprehensive and
+structured framework for protecting information assets and reducing the likelihood of data
+breaches and cyber incidents~\cite{ref35}.
+
+One important security measure stated by this standard is to always set up event logging and
+monitoring to record system activities and provide help in threat detection and response. XDR
+systems align closely with this requirement, as they usually collect information of events from
+multiple sources, giving analysts a centralized logging system.
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.7\textwidth]{fig16_iso_xdr.png}
+  \caption{Conceptual relationship between ISO/IEC 27001 and XDR systems (generated using AI
+  tools)}
+  \label{fig:iso_xdr}
+\end{figure}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Compliance Challenges and Operational Limitations in XDR Systems}
+% ──────────────────────────────────────────────────────────────────────────────
+
+As mentioned before, XDR systems are the next line of innovation. Along with the enhancements
+from AI and ML, as well as the centralization of data, they will be a huge service requested by
+all organizations. However, much like the traditional systems currently used in most
+cybersecurity solutions (SIEMs, EDRs, SOAR, etc.), they must fully comply with well-known
+frameworks and best practices. This might be a challenge, considering that AI tends to be
+inconsistent with decision-making, where the algorithms that give AI the ability of learning and
+operating autonomously are not yet fine-tuned to fit the steep requirements that the cybersecurity
+field has.
+
+% ──────────────────────────────────────────────
+\subsection{Transparency and Auditability Issues}
+% ──────────────────────────────────────────────
+
+As mentioned before, AI-enhanced XDR systems work like a black box, where the analysts have
+difficulties interpreting why the system responds a specific way to a specific incident or
+occurrence. The decision process of these tools is impossible to interpret~\cite{ref36}.
+
+\begin{figure}[htbp]
+  \centering
+   \includegraphics[width=0.75\textwidth]{fig17_blackbox_xai.png}
+  \caption{Black Box Concept vs.\ Explainable AI~\cite{ref40}}
+  \label{fig:blackbox_xai}
+\end{figure}
+
+These issues for auditability and transparency cause big problems, as cybersecurity analysts need
+to know and understand why a particular event is deemed malicious, and why a specific incident
+response action is taken against it, in order to fully comply with regulations~\cite{ref37}. This
+is also an issue for organisations that might be facing an APT (Advanced Persistent Threat),
+where the threat is not easily found, making it hard for the analysts to follow up with
+understanding why the AI and ML-enhanced XDR system decided to mark a series of activities as
+suspicious.
+
+\begin{figure}[htbp]
+  \centering
+   \includegraphics[width=0.7\textwidth]{fig18_apt_datasets.png}
+  \caption{Datasets used for APT detection~\cite{ref37}}
+  \label{fig:apt_datasets}
+\end{figure}
+
+% ──────────────────────────────────────────────
+\subsection{Operational Complexity and Integration}
+% ──────────────────────────────────────────────
+
+However, even with the use of AI and strong ML algorithms, analysts can never be one hundred
+percent sure that everything that the system deems appropriate is actually appropriate. This begs
+the question: with centralized data coming from multiple points of an organization's
+infrastructure, how can an administrator handle all this information? They could be rapidly
+overwhelmed by the data and have difficulty correlating the events~\cite{ref37}.
+
+Not only that, but the policies enforced should always be firm and consistent, and the response
+plan should be standardized, making it even harder for a human analyst to keep up. These issues
+become even more problematic when having to deal with largely scaled security solutions that
+integrate multiple tools together.
+
+% ──────────────────────────────────────────────
+\subsection{Limitations in Automated Compliance Enforcement}
+% ──────────────────────────────────────────────
+
+Although the above-mentioned frameworks, such as MITRE ATT\&CK and NIST CSF provide structured
+and clear guidance on how to operate safely, the XDR system does not automatically comply with
+them.
+
+The MITRE ATT\&CK provides a series of TTPs for well-known cyber-attacks, but that does not mean
+that an XDR system should have it as a predefined rule to function a certain way for both
+detection and response, thus making MITRE ATT\&CK a reference, and not a main source of
+automated compliance.
+
+The same thing can be said about NIST CSF: even though it gives security providers a clear way
+of defending an organization's system, it does not mean that the steps will be followed
+rigorously using enforced automation, but only through complex organization and
+planning~\cite{ref39}. Therefore, an XDR system, even the innovative ones including LLMs and
+powerful ML algorithms, still requires manual intervention in some cases.
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Summary \& Review of Gaps and Future Research Scopes}
+% ──────────────────────────────────────────────────────────────────────────────
+
+This chapter provided a review of every modern technology related to cybersecurity systems,
+especially focusing on threat and intrusion detection as well as incident response, which are the
+two core functionalities of XDR systems, while also provisioning the capabilities and innovations
+of these systems incorporated with Large Language Models (LLMs).
+
+It started with traditional and conventional systems, such as SIEMs and EDRs, focusing on their
+way of operation as well as their positive impact in providing security, but also covered their
+current limitations and their disability to evolve along the threats that are being developed
+every day.
+
+The next part covered one of the most important concepts of what the cybersecurity field is
+trying to achieve: systems that use LLMs, incorporated with Agentic AI and powerful machine
+learning algorithms, to create a centralized dashboard for analysts to easily maintain a whole
+infrastructure.
+
+Lastly, the chapter also covered the relationship between these XDR systems and cybersecurity
+frameworks, highlighting the importance of the protocol and guidelines that these systems should
+follow on every scenario, as well as learn and understand how attackers use tactics and procedures
+to infiltrate the system and how to follow a specific set of actions in order to neutralize
+large-scale threats.
+
+% ══════════════════════════════════════════════════════════════════════════════
+\chapter{System Design and Architecture}
+% ══════════════════════════════════════════════════════════════════════════════
+
+This chapter contains insights about the design, development and simulation of the proposed
+AI-driven XDR security system. The main points include the overall structure of the solution,
+how the components work with each other, and describe the tools and technologies used for
+creating it.
+
+The solution's aim is to simulate the behaviour of modern XDR (Extended Detection \& Response)
+systems, by collecting telemetry from more than one source, analysing generated logs from these
+sources, then identifying any weird behaviour or pattern, to finally automate a response plan.
+The way this is going to be achieved is by using a centralized system with powerful Machine
+Learning algorithms.
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{System Overview}
+% ──────────────────────────────────────────────────────────────────────────────
+
+The system's design can easily be described as an AI-driven XDR security system, that can not
+only do what an XDR system alone always does---such as collecting data from multiple sources and
+centralizing the display of these data---but also detect suspicious behaviour over different data
+layers, correlate this behaviour from one data layer to another, and then respond to this issue
+autonomously with the appropriate response plan.
+
+All the components of this simulated solution work with each other, all handling different parts
+of the process (detecting or responding), with a main goal of replicating a real XDR system used
+in real-world cybersecurity environments. One of the ready-made components that will have to be
+included is an open-source telemetry system called Wazuh, alongside a trained AI model, capable
+of detecting abnormal patterns and concluding which response action is best appropriate for the
+threat.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth,height=0.7\textheight,keepaspectratio]{fig19_xdr_system_design.png}
+  \caption{XDR Simulated System Design}
+  \label{fig:xdr_system_design}
+\end{figure}
+
+The above picture gives a visual representation of the layered design, starting from the
+endpoints that are being monitored, continuing with Wazuh agents grabbing these logs and sending
+them to the detection engine, where powerful Machine Learning algorithms try to detect
+abnormalities and identify any possible threats. If there is any suspicious behaviour detected,
+the decision engine powered by an AI model determines the severity of the event and simulates a
+response plan. The response plan includes things such as process termination, endpoint isolation
+and IP blocking.
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Endpoint Monitoring and Log Collection Layer}
+% ──────────────────────────────────────────────────────────────────────────────
+
+The first step of the proposed XDR system is endpoint monitoring and log collection. This layer
+is used for simulating the generation of telemetry, collecting it and then sending it to a
+centralized processing layer.
+
+The main components are the Wazuh agents, which are installed on the monitored endpoints (in this
+case Virtual Machines). They collect data and logs from events and processes and then send them
+over to the Wazuh manager for further analysis.
+
+The collected telemetry data can include normal process logging, but also:
+
+\begin{itemize}
+  \item Authentication events (not in normal work hours)
+  \item Failed login attempts (suspicious if the user has tried multiple times)
+  \item Suspicious PowerShell activity (such as the command \texttt{whoami}, to understand user
+  access and privileges)
+  \item File modification activity (suspicious if a process tries to modify files that are core
+  to the operating system, or that include batch processes)
+\end{itemize}
+
+\begin{figure}[htbp]
+  \centering
+   \includegraphics[width=0.5\textwidth]{fig20_whoami.png}
+  \caption{\texttt{whoami} Command in PowerShell}
+  \label{fig:whoami}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+   \includegraphics[width=0.85\textwidth]{fig21_wazuh_dashboard.png}
+  \caption{Wazuh Central Server (Dashboard), accessed on May 23, 2026}
+  \label{fig:wazuh_dashboard}
+\end{figure}
+
+These processes collected by Wazuh agents, after being sent to the main server, are normalized
+and categorized based on already defined rules of category and severity. This gives the AI engine
+more capability to understand whether any of these logs represent an abnormality, or if there is
+a connection between two or multiple logs that may indicate a possible threat.
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Central Data Processing and Telemetry Management Layer}
+% ──────────────────────────────────────────────────────────────────────────────
+
+This section covers the second part of the solution, specifically talking about how the data taken
+from numerous sources is connected to the AI engine which will actually analyse the telemetry.
+Anything collected by the Wazuh agents will be sent here, so that the machine learning trained
+models can analyse and search for patterns or abnormalities through a wide number of generated
+logs.
+
+All the generated telemetry is collected and processed by Wazuh Manager (centralized server
+storing all the data), to then be sent through the central processing layer. The most important
+thing to do at this stage is to create a standard format for all the logs, which will help the
+models better understand the telemetry. This will be done by normalization and use of data
+sanitization methods.
+
+The desired end-product will be a prepared dataset that will be further analysed, but there will
+also be another crucial step: feature extraction \& labelling. Machine Learning algorithms are
+unable to just train themselves on raw telemetry or log data, meaning that specific attributes
+will have to be labelled as important variables in the detection and decision-making parts. Table
+\ref{tab:feature_labels} shows a raw example of how labelling is made.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Feature Labelling Example}
+  \label{tab:feature_labels}
+  \begin{tabular}{>{\bfseries}p{4.5cm} p{9cm}}
+    \toprule
+    Feature & Description \\
+    \midrule
+    Failed Login Count    & Suspicious number of login attempts \\
+    Event Frequency       & Similar events with same interval apart \\
+    Source IP Address     & Activity origin \\
+    Process Name          & Name of executed process \\
+    Endpoint Severity     & Determined by the Wazuh Manager \\
+    Endpoint Identifier   & Finding the source of telemetry \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The design choice of having a different layer for data processing and detection logic followed by
+response is applied to current XDR-based cybersecurity solutions, due to the scalability potential
+it has for future modifications or additions to the system or to the machine learning algorithms,
+also making it easier to just add new endpoints.
+
+\begin{figure}[htbp]
+  \centering
+   \includegraphics[width=0.8\textwidth]{fig22_central_data_processing.png}
+  \caption{Central Data Processing Workflow}
+  \label{fig:central_data_processing}
+\end{figure}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Artificial Intelligence Detection Layer}
+% ──────────────────────────────────────────────────────────────────────────────
+
+This is the core part of the XDR solution, offering detailed analysis of all the normalized data
+and telemetry received from the Wazuh Manager Server and any real-time logs, helping identify any
+discrepancies or abnormalities in a log or a series of logs. Unlike conventional systems, this
+will rely not only on basic predefined rules, but also on behavioural analysis where the most
+innovative part is the detection of threats that don't use a known pattern of attacking.
+
+The evaluation of the normalized telemetry data is done through powerful Machine Learning
+Algorithms, focused on extracting features such as:
+
+\begin{itemize}
+  \item Frequency of a process being executed
+  \item Network behaviour
+  \item Process execution and resource patterns
+  \item etc.
+\end{itemize}
+
+These features are selected since they determine if a particular event or a thread of executed
+processes is of risk or not. The detection phase begins with taking all the extracted features,
+sending them to the Machine Learning model, which will classify all the data using an anomaly
+score, where the higher the score, the higher the chance of this event or log being an indicator
+of a cyber threat.
+
+The design with two different layers---where one classifies potential risks and the other
+correlates them---makes it easier to scale the models or the layers themselves.
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.8\textwidth,height=0.7\textheight,keepaspectratio]{fig23_ai_detection_layer.png}
+  \caption{AI Detection Layer Workflow}
+  \label{fig:ai_detection_layer}
+\end{figure}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Event Correlation and Threat Analysis}
+% ──────────────────────────────────────────────────────────────────────────────
+
+The correlation layer is right after the detection layer decides on what to classify as potential
+threats, by filtering the suspicious telemetry data out and sending it to this layer. The
+correlation logic will evaluate the risks using metrics such as:
+
+\begin{itemize}
+  \item \textbf{Threat Scoring:} The higher the score, the higher the chance of a log or event
+  being related to a cyber threat.
+  \item \textbf{Attack Pattern Matching:} Known sequences of scaled attacks and TTPs (using
+  MITRE ATT\&CK's framework) are used to determine whether a sequence of logs matches a
+  well-known attack.
+  \item \textbf{Confidence Evaluation:} Verifying whether one of the filtered logs can actually
+  pose a threat or is just a false positive.
+\end{itemize}
+
+An important objective of threat correlation is to identify if there is a connection between
+different logs and tie it to a largely scaled attack or intrusion. However, it should also be
+able to detect whether the filtered-out logs by the detection layer can be coincidences or false
+positives. Through continuous learning and training, better data normalization and feature
+extraction, as well as model improvement, it can help create a stronger and more accurate layer.
+
+\begin{figure}[htbp]
+  \centering
+   \includegraphics[width=0.8\textwidth]{fig24_correlation_layer.png}
+  \caption{Correlation Layer Architecture}
+  \label{fig:correlation_layer}
+\end{figure}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Decision and Threat Mitigation Layer}
+% ──────────────────────────────────────────────────────────────────────────────
+
+The Decision layer is responsible for validating the results that the AI model has come up with
+after suspicious log detection and event correlation. After evaluating the results, it determines
+the appropriate response action, acting as the rational thinking and decision-making engine, which
+is required in real-world XDR solutions. This feature must be if not fully, mostly automated,
+requiring little to no human input.
+
+The automated process is executed based on some performative features, such as:
+
+\begin{itemize}
+  \item \textbf{Severity} (based on the score assigned from detection)
+  \item \textbf{Confidence} (based on how confident the detection model is that the filtered
+  suspicious log is actually an anomaly)
+  \item \textbf{Context of detected incident} (The initialization of the attack and if there is
+  usage of TTPs)
+\end{itemize}
+
+Based on previously generated data such as anomaly scores, correlated events, threat
+classification and affected assets, the model continues with assessing the level of risk. Using
+this, the model then assigns priority and launches a specific response plan, with examples of
+responses below:
+
+\begin{itemize}
+  \item Security alert generation
+  \item Increased watch and monitor
+  \item Blocking of suspicious external sources and IP addresses
+  \item Termination of suspicious processes
+  \item Isolation of affected assets \& endpoints
+\end{itemize}
+
+However, this response action is not directly sent to the affected endpoints, but actually goes
+through a testing layer called the Response Simulation Layer, where the chosen response action
+is simulated to prove the effectiveness of the choice made by the model.
+
+\begin{figure}[H]
+  \centering
+   \includegraphics[width=0.8\textwidth, height=0.7\textheight,keepaspectratio]{fig25_decision_layer.png}
+  \caption{Decision and Threat Mitigation Layer}
+  \label{fig:decision_layer}
+\end{figure}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Response Simulation Layer}
+% ──────────────────────────────────────────────────────────────────────────────
+
+The Response Simulation Layer is the last component that makes this architecture complete. The
+response chosen by the AI \& ML model needs to be executed in a controlled testing environment to
+ensure that the response is actually effective against the threat. This will replicate the actual
+real-world response actions that are executed in any security solution.
+
+The response actions are comprised of actions meant to limit an endpoint's access to the local
+network, or even total isolation, thus preventing any malware from spreading to other endpoints
+in the same network, stopping ransomware from encrypting files and so on. It is also important
+that every action performed by this simulation is saved and logged.
+
+All the logged data from an incident must be done cleanly, making sure that the logging process
+is standardized and every generated piece of information can easily be read by a human, or turned
+into further training data for future models. Important features include:
+
+\begin{itemize}
+  \item Detected Threat
+  \item Severity Level
+  \item Selected Response Action
+  \item Timestamp
+  \item Affected Endpoint/Device
+  \item Response Status
+\end{itemize}
+
+\begin{figure}[htbp]
+  \centering
+   \includegraphics[width=0.8\textwidth]{fig26_response_execution.png}
+  \caption{Response Plan Execution Workflow}
+  \label{fig:response_execution}
+\end{figure}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Dashboard and Monitoring Interface}
+% ──────────────────────────────────────────────────────────────────────────────
+
+The dashboard and monitoring interface will serve as the view that the user (analysts) will
+interact with the proposed solution. Its stack will comprise React \& TypeScript, simulated by
+real-world XDR solutions, that will help show current logs being sent from the different endpoints
+in a user-friendly structure.
+
+Besides the data, this dashboard will also preview any incoming security events or active alerts
+that are generated at the moment when data is going through the detection and correlation layer,
+as well as the results of AI analysis done on the backend. It will also contain a tab where there
+will be a chronological order of the issues, giving analysts a detailed view of how the model
+processed the information and gave back its response.
+
+\begin{figure}[htbp]
+  \centering
+   \includegraphics[width=0.9\textwidth]{fig27_dashboard.png}
+  \caption{Dashboard Pages}
+  \label{fig:dashboard}
+\end{figure}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{System Modelling: UML Diagrams}
+% ──────────────────────────────────────────────────────────────────────────────
+
+The design and implementation of the proposed solution require not only functional explanation
+and overview, but also a clear correlation between the interactions of users (analysts) and the
+system itself. The selected diagrams that are able to fully explain how the system works and how
+users interact with it are:
+
+\begin{itemize}
+  \item Use Case Diagram
+  \item Sequence Diagram
+  \item Component Diagram
+\end{itemize}
+
+% ──────────────────────────────────────────────
+\subsection{Use Case Diagram}
+% ──────────────────────────────────────────────
+
+\begin{figure}[htbp]
+  \centering
+   \includegraphics[width=0.8\textwidth]{fig_usecase.png}
+  \caption{Use Case Diagram of AI-driven XDR System}
+  \label{fig:use_case}
+\end{figure}
+
+The Use Case Diagram is used to illustrate the connection and interaction between system users
+and the XDR solution. It helps us understand who are the types of users that can interact with
+the system, and what kind of functionality and privilege levels each group of users has. It also
+shows how the system actions are connected to each other and can be executed by the users
+themselves.
+
+% ──────────────────────────────────────────────
+\subsection{Sequence Diagram}
+% ──────────────────────────────────────────────
+
+The Sequence Diagram will illustrate not only the interaction between users and components of the
+system, but will also give a clear timeline of the execution of each process that the system has,
+in a chronological manner. The process will begin from the endpoints that generate logs and event
+alerts, which are then collected by Wazuh agents and sent for further inspection. After the data
+received is normalized and standardized, it goes through three different layers and displays the
+result on the dashboard.
+
+The components that will be part of the diagram are:
+
+\begin{itemize}
+  \item Monitored Endpoint
+  \item Wazuh Agents
+  \item Data Processing Layer
+  \item AI Detection Layer
+  \item Correlation Layer
+  \item Decision-Making Engine
+  \item Response Simulation Layer
+  \item Dashboard
+\end{itemize}
+
+\begin{figure}[htbp]
+  \centering
+   \includegraphics[width=0.9\textwidth]{fig_sequence.png}
+  \caption{Sequence Diagram for XDR solution}
+  \label{fig:sequence}
+\end{figure}
+
+% ──────────────────────────────────────────────
+\subsection{Component Diagram}
+% ──────────────────────────────────────────────
+
+The Component Diagram gives an overview of the structural organization of the proposed XDR
+solution. Different from the previous diagram that explains the timeline of the interaction
+between the user and the components, this diagram provides the internal architecture, including
+the data processing module, AI detection and correlation layers, decision engine and the user
+dashboard. It also shows the fact that all these components work autonomously, giving the option
+to modify or change parts of it without worrying about the whole architecture.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth, height=0.4\textheight,keepaspectratio]{fig_component.png}
+  \caption{XDR Solution Component Diagram}
+  \label{fig:component}
+\end{figure}
+
+% ══════════════════════════════════════════════════════════════════════════════
+% References
+% ══════════════════════════════════════════════════════════════════════════════
+\begin{thebibliography}{40}
+
+\bibitem{ref1}
+MITRE ATT\&CK, ``Phishing (T1566),'' \textit{MITRE ATT\&CK\textregistered}.
+[Online]. Available: \url{https://attack.mitre.org/techniques/T1566/}
+[Accessed: Mar.\ 16, 2026].
+
+\bibitem{ref2}
+National Institute of Standards and Technology, \textit{Computer Security Incident Handling
+Guide}, NIST Special Publication 800-61r3. Available:
+\url{https://doi.org/10.6028/NIST.SP.800-61r3}
+
+\bibitem{ref3}
+\url{https://doi.org/10.63282/3050-9262.IJAIDSML-V6I1P111}
+
+\bibitem{ref4}
+N.\ N.\ A.\ Sjarif, S.\ Chuprat, M.\ N.\ Mahrin, N.\ A.\ Ahmad, A.\ Ariffin, and
+F.\ M.\ Senan, ``Endpoint Detection and Response: Why Use Machine Learning?,''
+\textit{IEEE Xplore}, DOI: 10.1109/ICOIN50798.2020.8939836.
+
+\bibitem{ref5}
+Microsoft, ``What is XDR?,'' \textit{Microsoft Security}.
+[Online]. Available:
+\url{https://www.microsoft.com/en-us/security/business/security-101/what-is-xdr}
+
+\bibitem{ref6}
+D.\ Pissanidis and K.\ Demertzis, ``Integrating AI/ML in Cybersecurity: An Analysis of Open
+XDR Technology and Its Application in Intrusion Detection and System Log Management,''
+\textit{Preprints}, Dec.\ 2023, doi: 10.20944/preprints202312.0205.v1.
+
+\bibitem{ref7}
+MITRE ATT\&CK, ``MITRE ATT\&CK Framework,'' \textit{MITRE ATT\&CK\textregistered}.
+[Online]. Available: \url{https://attack.mitre.org/}
+
+\bibitem{ref8}
+N.\ Mohamed, ``Artificial intelligence and machine learning in cybersecurity: a deep dive into
+state-of-the-art techniques and future paradigms,'' \textit{Knowledge and Information Systems},
+vol.\ 67, pp.\ 6969--7055, 2025. \url{https://doi.org/10.1007/s10115-025-02429-y}
+
+\bibitem{ref9}
+S.\ Survaiya, V.\ Uke, and I.\ Vighe, ``AI in cybersecurity: Intrusion detection system,''
+\textit{International Advanced Research Journal in Science, Engineering and Technology},
+vol.\ 12, no.\ 11, 2025, doi: 10.17148/IARJSET.2025.121106.
+
+\bibitem{ref10}
+N.\ Mohamed, ``Current trends in AI and ML for cybersecurity: A state-of-the-art survey,''
+\textit{Cogent Engineering}, vol.\ 10, no.\ 2, p.\ 2272358, 2023,
+DOI: 10.1080/23311916.2023.2272358.
+
+\bibitem{ref11}
+S.\ Survaiya, V.\ Uke, and I.\ Vighe, ``AI in cybersecurity: Intrusion detection system,''
+\textit{International Advanced Research Journal in Science, Engineering and Technology},
+vol.\ 12, no.\ 11, Nov.\ 2025, doi: 10.17148/IARJSET.2025.121106.
+
+\bibitem{ref12}
+D.\ Tomar, K.\ Chhillar, and D.\ Kumhar, ``Comparative study of supervised, unsupervised and
+reinforcement learning approaches for malware detection,'' \textit{International Journal of
+Innovative Research in Technology (IJIRT)}, vol.\ 12, no.\ 4, pp.\ 2793--2801, Sep.\ 2025.
+
+\bibitem{ref13}
+Canadian Institute for Cybersecurity, ``CICIDS2017 Dataset.'' [Online]. Available:
+\url{https://www.unb.ca/cic/datasets/ids-2017.html}
+
+\bibitem{ref14}
+S.\ T.\ Erukude, V.\ C.\ Marella, and S.\ R.\ Veluru, ``AI-Driven Cybersecurity Threats:
+A Survey of Emerging Risks and Defensive Strategies,'' arXiv:2601.03304, Jan.\ 2026.
+[Online]. Available: \url{https://arxiv.org/abs/2601.03304}
+
+\bibitem{ref15}
+J.\ Pan, ``AI based Log Analyser: A Practical Approach,'' arXiv, 2022.
+
+\bibitem{ref16}
+NSA \& CISA, ``Implementing SIEM and SOAR Platforms Guidance,'' 2025.
+
+\bibitem{ref17}
+A.\ Ehis, ``Optimization of SIEM Infrastructures and Event Correlation Analysis,'' 2023.
+
+\bibitem{ref18}
+N.\ Sharma and N.\ Jindal, ``Emerging artificial intelligence applications: metaverse, IoT,
+cybersecurity, healthcare -- an overview,'' \textit{Multimedia Tools and Applications},
+vol.\ 83, no.\ 19, pp.\ 57317--57345, 2024.
+
+\bibitem{ref19_fig}
+C.\ Kyrkou et al., ``Towards artificial-intelligence-based cybersecurity for robustifying
+automated driving systems against camera sensor attacks,'' in \textit{Proc.\ 2020 IEEE
+Computer Society Annual Symposium on VLSI (ISVLSI)}, 2020.
+
+\bibitem{ref19b}
+C.\ Kyrkou et al., ``Towards artificial-intelligence-based cybersecurity for robustifying
+automated driving systems against camera sensor attacks,'' in \textit{Proc.\ 2020 IEEE
+Computer Society Annual Symposium on VLSI (ISVLSI)}, 2020.
+
+\bibitem{ref20}
+S.\ Dua and X.\ Du, ``Data Mining and Machine Learning in Cybersecurity,''
+arXiv:1904.03491, 2019. [Online]. Available: \url{https://arxiv.org/abs/1904.03491}
+
+\bibitem{ref21}
+N.\ Mohamed, ``Current Trends in AI and ML for Cybersecurity: A State-of-the-Art Survey,''
+\textit{Cogent Engineering}, 2023.
+
+\bibitem{ref22}
+I.\ Kim et al., ``Toward Robust Security Orchestration and Automated Response,''
+\textit{Information}, 2025.
+
+\bibitem{ref23}
+M.\ S.\ Arsanjani, ``The Anatomy of Agentic AI,'' \textit{Medium}, 2023. Available:
+\url{https://dr-arsanjani.medium.com/the-anatomy-of-agentic-ai-0ae7d243d13c}
+[Accessed: May 19, 2026].
+
+\bibitem{ref24}
+N.\ Katiyar, ``AI And Cyber-Security: Enhancing Threat Detection And Response With Machine
+Learning,'' \textit{Educational Administration: Theory and Practice}, vol.\ 30, no.\ 4,
+pp.\ 6273--6282, 2024. doi: 10.53555/kuey.v30i4.2377.
+
+\bibitem{ref25}
+G.\ Palma, G.\ Cecchi, M.\ Caronna, and A.\ Rizzo, ``Leveraging Large Language Models for
+Scalable and Explainable Cybersecurity Log Analysis,'' \textit{Journal of Cybersecurity and
+Privacy}, vol.\ 5, p.\ 55, 2025. \url{https://doi.org/10.3390/jcp5030055}
+
+\bibitem{ref26}
+Skedler, ``What is Explainable AI (XAI)?'' 2023. [Online]. Available:
+\url{https://www.skedler.com/blog/what-is-explainable-ai-xai/}
+[Accessed: May 19, 2026].
+
+\bibitem{ref27}
+A.\ Vassilev, A.\ Oprea, A.\ Fordyce, and H.\ Anderson, \textit{Adversarial Machine Learning:
+A Taxonomy and Terminology of Attacks and Mitigations}, NIST AI 100-2e2023, 2024.
+\url{https://doi.org/10.6028/NIST.AI.100-2e2023}
+
+\bibitem{ref28}
+Simplilearn, ``CIA Triad in Cyber Security,'' 2026. [Online]. Available:
+\url{https://www.simplilearn.com/cia-triad-in-cyber-security-article}
+[Accessed: May 19, 2026].
+
+\bibitem{ref29}
+G.\ Sarraf and V.\ Pal, ``Autonomous Threat Detection and Response in Cloud Security:
+A Comprehensive Survey of AI-Driven Strategies,'' 2025.
+
+\bibitem{ref30}
+V.\ Shewale, ``Beyond EDR: Exploring the rise of XDR for unified threat detection and
+response,'' \textit{World Journal of Advanced Engineering Technology and Sciences},
+vol.\ 15, no.\ 02, pp.\ 380--386, 2025.
+doi: \url{https://doi.org/10.30574/wjaets.2025.15.2.0551}
+
+\bibitem{ref31}
+Microsoft, ``What is the MITRE ATT\&CK framework?,'' \textit{Microsoft Security}.
+\url{https://www.microsoft.com/en-us/security/business/security-101/what-is-mitre-attack-framework}
+[Accessed: May 20, 2026].
+
+\bibitem{ref32}
+IBM, ``What is the MITRE ATT\&CK framework?,'' \textit{IBM Think}.
+\url{https://www.ibm.com/think/topics/mitre-attack} [Accessed: May 20, 2026].
+
+\bibitem{ref33}
+MITRE Corporation, ``ATT\&CK,'' \textit{MITRE ATT\&CK}. \url{https://attack.mitre.org/}
+
+\bibitem{ref34}
+National Institute of Standards and Technology (NIST), ``Identify, Protect, Detect, Respond
+and Recover: The NIST Cybersecurity Framework,'' \textit{NIST Taking Measure Blog}.
+\url{https://www.nist.gov/blogs/taking-measure/identify-protect-detect-respond-and-recover-nist-cybersecurity-framework}
+[Accessed: May 20, 2026].
+
+\bibitem{ref35}
+IBM, ``ISO 27001 compliance -- IBM Cloud,'' \textit{IBM Products}.
+\url{https://www.ibm.com/products/cloud/compliance/iso-27001}
+[Accessed: May 20, 2026].
+
+\bibitem{ref36}
+X.\ Li et al., ``Explainable dimensionality reduction (XDR) to unbox AI `black box' models,''
+\textit{Humanities and Social Sciences Communications}, vol.\ 10, p.\ 35, 2023.
+\url{https://doi.org/10.1057/s41599-023-01505-4}
+
+\bibitem{ref37}
+N.\ H.\ A.\ Mutalib et al., ``Explainable deep learning approach for advanced persistent
+threats (APTs) detection in cybersecurity: a review,'' \textit{Artificial Intelligence Review},
+vol.\ 57, p.\ 297, 2024. \url{https://doi.org/10.1007/s10462-024-10890-4}
+
+\bibitem{ref38}
+A.\ S.\ George, A.\ George, Dr.\ Baskar, and D.\ Pandey, ``XDR: The Evolution of Endpoint
+Security Solutions,'' \textit{International Journal of Advanced Research in Science
+Communication and Technology}, vol.\ 8, pp.\ 493--501, 2021.
+doi: 10.5281/zenodo.7028219.
+
+\bibitem{ref39}
+J.\ Jana, ``The AI Black Box: What We're Still Getting Wrong about Trusting Machine Learning
+Models,'' \textit{Hyperight}, Mar.\ 3, 2025. [Online]. Available:
+\url{https://hyperight.com/ai-black-box-what-were-still-getting-wrong-about-trusting-machine-learning-models/}
+[Accessed: May 11, 2026].
+
+\bibitem{ref40}
+A.\ Hui, S.\ Ahn, C.\ Lye, and J.\ Deng, ``Ethical Challenges of Artificial Intelligence in Health Care: A Narrative Review,'' \textit{Ethics in Biology, Engineering and Medicine}, vol.\ 12, 2022. doi: 10.1615/EthicsBiologyEngMed.2022041580.
+
+\end{thebibliography}
+
+\end{document}

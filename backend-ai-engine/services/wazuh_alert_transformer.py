@@ -22,11 +22,7 @@ class WazuhAlertTransformer:
             description = rule.get("description", "Unknown alert")
             level = rule.get("level", 0)
 
-            dedupe_key = (
-                timestamp,
-                endpoint,
-                description
-            )
+            dedupe_key = (timestamp, endpoint, description)
 
             if dedupe_key in seen:
                 continue
@@ -42,11 +38,9 @@ class WazuhAlertTransformer:
                 or system.get("computer", "N/A")
             )
 
-            event_id = len(events) + 1
-
             events.append(
                 SecurityEvent(
-                    id=event_id,
+                    id=len(events) + 1,
                     timestamp=timestamp,
                     endpoint=endpoint,
                     event_type=event_type,
@@ -80,8 +74,20 @@ class WazuhAlertTransformer:
         if "powershell" in desc:
             return "PowerShell Execution"
 
-        if "logon failure" in desc or "failed" in desc or "bad password" in desc:
+        if "net.exe" in desc or "account discovery" in desc or "discovery activity" in desc:
+            return "Account Discovery"
+
+        if "sudo to root" in desc or "successful sudo" in desc:
+            return "Privilege Escalation"
+
+        if "logon failure" in desc or "bad password" in desc or "failed login" in desc:
             return "Failed Login Attempts"
+
+        if "windows logon success" in desc or "authentication success" in desc:
+            return "Successful Login"
+
+        if "executable file dropped" in desc:
+            return "Suspicious File Drop"
 
         if "network" in desc or "connection" in desc:
             return "Suspicious Network Connection"
@@ -89,7 +95,10 @@ class WazuhAlertTransformer:
         if "process" in desc:
             return "Process Execution"
 
-        if "executable file dropped" in desc:
-            return "Suspicious File Drop"
+        if "pam: login session opened" in desc:
+            return "Login Session Opened"
+
+        if "pam: login session closed" in desc:
+            return "Login Session Closed"
 
         return "Generic Security Event"

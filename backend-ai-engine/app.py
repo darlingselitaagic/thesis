@@ -14,9 +14,11 @@ from services.wazuh_alert_file_reader import WazuhAlertFileReader
 from services.wazuh_alert_transformer import WazuhAlertTransformer
 from services.response_service import ResponseService
 from services.response_explanation_service import ResponseExplanationService
+from services.database_service import DatabaseService
 
 app = Flask(__name__)
 CORS(app)
+DatabaseService.initialize()
 
 @app.route("/")
 def home():
@@ -214,6 +216,7 @@ def get_xdr_wazuh_alerts():
         event_data["is_anomaly"] = is_anomaly
         event_data["anomaly_score"] = anomaly_score
 
+        DatabaseService.save_event(event_data)
         response.append(event_data)
 
     return jsonify(response)
@@ -291,6 +294,89 @@ def get_xdr_wazuh_responses():
         responses.append(response)
 
     return jsonify(responses)
+
+@app.route("/api/log-history")
+def get_log_history():
+
+    conn = DatabaseService.get_connection()
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    SELECT *
+    FROM security_events
+    ORDER BY id DESC
+    """)
+
+    rows = cursor.fetchall()
+
+    conn.close()
+
+    results = []
+
+    for row in rows:
+
+        results.append({
+            "id": row[0],
+            "timestamp": row[1],
+            "endpoint": row[2],
+            "source_ip": row[3],
+            "severity": row[4],
+            "event_type": row[5],
+            "description": row[6],
+            "threat_score": row[7],
+            "classification": row[8],
+            "recommended_action": row[9],
+            "anomaly_score": row[10],
+            "is_anomaly": bool(row[11])
+        })
+
+    return jsonify(results)
+
+@app.route("/api/sync-wazuh-logs")
+def sync_wazuh_logs():
+
+    reader = WazuhAlertFileReader()
+    raw_alerts = reader.get_recent_alerts(limit=200)
+
+    events = WazuhAlertTransformer.transform(raw_alerts)
+
+    ai_results = AIDetectionService.detect_anomalies(events)
+
+    ai_results_by_id = {
+        result["event_id"]: result
+        for result in ai_results
+    }
+
+    saved_count = 0
+
+    for event in events:
+
+        event_data = asdict(event)
+
+        score = ThreatScoringService.calculate_score(event)
+        classification = DecisionService.classify(score)
+
+        ai_result = ai_results_by_id.get(event.id, {})
+
+        event_data["threat_score"] = score
+        event_data["classification"] = classification
+        event_data["recommended_action"] = DecisionService.recommend_ai_action(
+            score,
+            ai_result.get("is_anomaly", False),
+            ai_result.get("anomaly_score", 0)
+        )
+        event_data["is_anomaly"] = ai_result.get("is_anomaly", False)
+        event_data["anomaly_score"] = ai_result.get("anomaly_score", 0)
+
+        DatabaseService.save_event(event_data)
+        saved_count += 1
+
+    return jsonify({
+        "message": "Wazuh logs synced into SQLite",
+        "processed": len(events),
+        "inserted": saved_count
+    })
 
 if __name__ == "__main__":
     app.run(debug=True)

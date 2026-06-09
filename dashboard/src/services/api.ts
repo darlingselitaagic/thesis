@@ -87,3 +87,13 @@ export async function getWazuhAgents() {
   const res = await api.get("/api/wazuh/agents")
   return res.data.data.affected_items as WazuhAgent[]
 }
+
+export async function getLogHistory() {
+  const res = await api.get<XdrAlert[]>("/api/log-history")
+  return res.data
+}
+
+export async function syncWazuhLogs() {
+  const res = await api.get("/api/sync-wazuh-logs")
+  return res.data
+}
