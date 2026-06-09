@@ -9,3 +9,5 @@ build/
 coverage/
 .idea/
 .vscode/
+*.pkl
+backend-ai-engine/models/
