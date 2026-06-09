@@ -1,4 +1,11 @@
-dataset/
-backend-ai-engine/venv/
-backend-ai-engine/__pycache__/
-/dashboard/node_modules/
+
+dashboard/node_modules/
+dataset/CICIDS2017
+dist/
+build/
+*.log
+.DS_Store
+.env
+coverage/
+.idea/
+.vscode/
