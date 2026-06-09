@@ -1,6 +1,5 @@
 
 dashboard/node_modules/
-dataset/CICIDS2017
 dist/
 build/
 *.log
@@ -9,5 +8,10 @@ build/
 coverage/
 .idea/
 .vscode/
+*.pkl
+backend-ai-engine/models/
+backend-ai-engine/venv/
+dataset/
+*.csv
 *.pkl
 backend-ai-engine/models/
