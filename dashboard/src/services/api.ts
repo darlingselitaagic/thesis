@@ -27,6 +27,13 @@ export type XdrCorrelation = {
   detected_patterns: string[]
   related_events: number[]
   recommended_action: string
+  attack_chain: string[]
+  possible_attack_stage: string
+  related_event_count: number
+  mitre_mapping: {
+    technique_id: string
+    technique: string
+  }[]
 }
 
 export type XdrResponse = {

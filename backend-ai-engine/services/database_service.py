@@ -1,7 +1,6 @@
 import sqlite3
 
-DB_NAME = "xdr_logs.db"
-
+DB_NAME = "filtered_logs.db"
 
 class DatabaseService:
 
@@ -29,7 +28,8 @@ class DatabaseService:
             classification TEXT,
             recommended_action TEXT,
             anomaly_score REAL,
-            is_anomaly INTEGER
+            is_anomaly INTEGER,
+            UNIQUE(timestamp, endpoint, description, event_type)
         )
         """)
 
@@ -64,7 +64,7 @@ class DatabaseService:
         cursor = conn.cursor()
 
         cursor.execute("""
-        INSERT INTO security_events(
+        INSERT OR IGNORE INTO security_events(
             timestamp,
             endpoint,
             source_ip,
@@ -92,6 +92,7 @@ class DatabaseService:
             event_data["anomaly_score"],
             int(event_data["is_anomaly"])
         ))
-
+        inserted = cursor.rowcount
         conn.commit()
         conn.close()
+        return inserted

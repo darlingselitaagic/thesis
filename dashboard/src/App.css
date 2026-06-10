@@ -653,3 +653,27 @@ td {
   opacity: 0.4;
   cursor: not-allowed;
 }
+
+.export-section {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.export-btn {
+  background-color: #1a5021 !important;
+  color: white;
+  border: none;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.export-btn:hover {
+  opacity: 0.9;
+}

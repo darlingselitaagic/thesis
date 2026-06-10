@@ -215,6 +215,10 @@ def get_xdr_wazuh_alerts():
         event_data["recommended_action"] = action
         event_data["is_anomaly"] = is_anomaly
         event_data["anomaly_score"] = anomaly_score
+        event_data["detection_method"] = ai_result.get("detection_method", "Unknown")
+        event_data["network_model_anomaly"] = ai_result.get("network_model_anomaly", False)
+        event_data["log_model_anomaly"] = ai_result.get("log_model_anomaly", False)
+        event_data["rule_anomaly"] = ai_result.get("rule_anomaly", False)
 
         DatabaseService.save_event(event_data)
         response.append(event_data)
@@ -369,13 +373,14 @@ def sync_wazuh_logs():
         event_data["is_anomaly"] = ai_result.get("is_anomaly", False)
         event_data["anomaly_score"] = ai_result.get("anomaly_score", 0)
 
-        DatabaseService.save_event(event_data)
-        saved_count += 1
+        inserted = DatabaseService.save_event(event_data)
+        saved_count += inserted
 
     return jsonify({
-        "message": "Wazuh logs synced into SQLite",
-        "processed": len(events),
-        "inserted": saved_count
+    "message": "Wazuh logs synced into SQLite",
+    "processed": len(events),
+    "inserted": saved_count,
+    "ignored": len(events) - saved_count
     })
 
 if __name__ == "__main__":

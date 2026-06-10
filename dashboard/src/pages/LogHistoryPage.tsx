@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import PageHeader from "../components/PageHeader"
-import { getLogHistory, type XdrAlert } from "../services/api"
-import { ArrowLeft, ArrowRight } from "lucide-react"
+import { getLogHistory, syncWazuhLogs, type XdrAlert } from "../services/api"
+import { ArrowLeft, ArrowRight, Sheet } from "lucide-react"
 
 type InvestigationInfo = {
   attackStage: string
@@ -138,9 +138,11 @@ export default function LogHistoryPage() {
   const [currentPage, setCurrentPage] = useState(1)
   const [rowsPerPage, setRowsPerPage] = useState(10)
 
-  useEffect(() => {
+useEffect(() => {
+  syncWazuhLogs().then(() => {
     getLogHistory().then(setAlerts)
-  }, [])
+  })
+}, [])
 
   const endpoints = [...new Set(alerts.map(a => a.endpoint))]
   const classifications = [...new Set(alerts.map(a => a.classification))]
@@ -170,6 +172,56 @@ export default function LogHistoryPage() {
     useEffect(() => {
     setCurrentPage(1)
   }, [search, endpoint, classification, eventType])
+
+  const exportCsv = () => {
+  const headers = [
+    "Timestamp",
+    "Endpoint",
+    "Event Type",
+    "Severity",
+    "Classification",
+    "Threat Score",
+    "Source IP",
+    "Recommended Action",
+    "Description"
+  ]
+
+  const rows = paginatedAlerts.map(alert => [
+    alert.timestamp,
+    alert.endpoint,
+    alert.event_type,
+    alert.severity,
+    alert.classification,
+    alert.threat_score,
+    alert.source_ip,
+    alert.recommended_action,
+    `"${alert.description.replace(/"/g, '""')}"`
+  ])
+
+  const csv = [
+    headers.join(","),
+    ...rows.map(row => row.join(","))
+  ].join("\n")
+
+  const blob = new Blob([csv], {
+    type: "text/csv;charset=utf-8;"
+  })
+
+  const url = URL.createObjectURL(blob)
+
+  const link = document.createElement("a")
+  link.href = url
+
+  link.download = `xdr_logs_${new Date()
+    .toISOString()
+    .replace(/[:.]/g, "-")}.csv`
+
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+
+  URL.revokeObjectURL(url)
+}
 
   return (
     <>
@@ -251,6 +303,15 @@ export default function LogHistoryPage() {
         <span>
           Page {currentPage} of {totalPages || 1}
         </span>
+
+        <div className="export-section">
+          <button
+          className="export-btn"
+          onClick={exportCsv}
+        >
+         < Sheet size={15} />
+          </button>
+        </div>    
 
         <select
           value={rowsPerPage}
