@@ -4,7 +4,7 @@ dist/
 build/
 *.log
 .DS_Store
-backend-ai-engine/.env/
+backend-ai-engine/.env
 coverage/
 .idea/
 .vscode/
