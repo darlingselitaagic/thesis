@@ -10,8 +10,8 @@ export default function SideNav({ activePage, onNavigate }: Props) {
   return (
     <aside className="side-nav">
       <div className="brand">
-        <h1>Vigilant AI-XDR</h1>
-        <span>Command Center</span>
+        <h1> AI-driven XDR System</h1>
+        <span>Analyst Dashboard</span>
       </div>
 
       <nav className="nav-links">
@@ -31,11 +31,6 @@ export default function SideNav({ activePage, onNavigate }: Props) {
           <Server size={20} /> System Status
         </button>
       </nav>
-
-      <div className="nav-footer">
-        <Activity size={16} />
-        <span>System Online</span>
-      </div>
     </aside>
   )
 }
