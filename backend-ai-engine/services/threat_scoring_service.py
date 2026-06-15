@@ -29,7 +29,7 @@ class ThreatScoringService:
             score += 35
 
         if "successful sudo" in text or "sudo to root" in text:
-            return 15
+            score += 25
 
         if "privilege escalation" in text:
             score += 25

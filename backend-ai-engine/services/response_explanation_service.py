@@ -73,6 +73,15 @@ class ResponseExplanationService:
         if "Possible malware execution chain" in patterns:
             return "Execution / Malware Activity"
 
+        if "Sequential execution-to-file-drop pattern" in patterns:
+            return "Malware Execution"
+
+        if "Suspicious command execution" in patterns:
+            return "Execution"
+
+        if "Suspicious executable file drop" in patterns:
+            return "Malware Staging"
+
         if "Possible malware staging activity" in patterns:
             return "Malware Staging"
 
@@ -81,6 +90,9 @@ class ResponseExplanationService:
 
         if "Possible post-exploitation activity" in patterns:
             return "Post-Exploitation"
+
+        if "Privilege elevation activity" in patterns:
+            return "Privilege Escalation"
 
         if "Authentication anomaly" in patterns:
             return "Initial Access Attempt"
@@ -94,8 +106,8 @@ class ResponseExplanationService:
 
         if "Suspicious command execution" in patterns:
             mappings.append({
-                "technique_id": "T1059",
-                "technique": "Command and Scripting Interpreter"
+                "technique_id": "T1059.001",
+                "technique": "PowerShell"
             })
 
         if "Suspicious executable file drop" in patterns:
