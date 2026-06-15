@@ -1,4 +1,4 @@
-import { Activity, History, LayoutDashboard, Server, Shield } from "lucide-react"
+import {History, LayoutDashboard, Server, Shield } from "lucide-react"
 import type { PageName } from "../App"
 
 type Props = {
