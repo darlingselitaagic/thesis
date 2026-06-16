@@ -37,18 +37,26 @@
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{\small AI-Driven XDR Simulation System}
-\lhead{\small Diploma Thesis -- Preliminary Report}
+\lhead{\small Diploma Thesis}
 \cfoot{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 
 % ── Section Title Formatting ──────────────────────────────────────────────────
 \titleformat{\chapter}[display]
-  {\centering\Huge\bfseries}
-  {\chaptername\ \thechapter}
+  {\centering\Large\bfseries}
+  {Chapter \thechapter}
   {1ex}
   {}
-\titleformat{\section}[hang]{\large\bfseries}{\thesection}{0.5em}{}
-\titleformat{\subsection}[hang]{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+\titleformat{\section}
+  {\centering\large\bfseries}
+  {\thesection}
+  {0.5em}
+  {}
+\titleformat{\subsection}
+  {\centering\normalsize\bfseries}
+  {\thesubsection}
+  {0.5em}
+  {}
 \titlespacing*{\chapter}{0pt}{20pt}{15pt}
 \titlespacing*{\section}{0pt}{14pt}{8pt}
 \titlespacing*{\subsection}{0pt}{10pt}{6pt}
@@ -99,7 +107,7 @@
   \vspace{2cm}
 
   % ── Names table ──
-  \begin{tabular}{@{}l@{\hspace{2cm}}lp{7cm}@{}}
+  \begin{tabular}{@{}l@{\hspace{2cm}}l@{}}
     \textbf{DEAN OF THE FACULTY}  & Prof.\ Asoc.\ Dr.\ Ligor NIKOLLA \\[0.5cm]
     \textbf{HEAD OF DEPARTMENT}   & Dr.\ Elton DOMNORI \\[0.5cm]
     \textbf{SUPERVISOR}           & Dr.\ Igli HAKRAMA \\[0.5cm]
@@ -131,29 +139,29 @@ previously submitted for examination.
 \addcontentsline{toc}{chapter}{List of Abbreviations}
 
 \begin{tabbing}
-  \hspace{2.5cm} \= \kill
-  \textbf{AI}  -     \> Artificial Intelligence \\[4pt]
-  \textbf{ML}  -    \> Machine Learning \\[4pt]
-  \textbf{XDR} -     \> Extended Detection and Response \\[4pt]
-  \textbf{EDR} -    \> Endpoint Detection and Response \\[4pt]
-  \textbf{SIEM} -    \> Security Information Event Management \\[4pt]
-  \textbf{SOAR} -    \> Security Orchestration, Automation and Response \\[4pt]
+  \hspace{2.7cm} \= \kill
+  \textbf{AI} -      \> Artificial Intelligence \\[4pt]
+  \textbf{ML} -       \> Machine Learning \\[4pt]
+  \textbf{XDR} -      \> Extended Detection and Response \\[4pt]
+  \textbf{EDR} -      \> Endpoint Detection and Response \\[4pt]
+  \textbf{SIEM} -     \> Security Information Event Management \\[4pt]
+  \textbf{SOAR} -     \> Security Orchestration, Automation and Response \\[4pt]
   \textbf{IDS} -      \> Intrusion Detection System \\[4pt]
   \textbf{IPS} -      \> Intrusion Prevention System \\[4pt]
   \textbf{TTP} -      \> Tactics, Techniques, Procedures \\[4pt]
-  \textbf{NIST} -     \> National Institute of Standards and Technology \\[4pt]
+  \textbf{NIST} -    \> National Institute of Standards and Technology \\[4pt]
   \textbf{NIST CSF} - \> NIST Cybersecurity Framework \\[4pt]
   \textbf{ISO} -      \> International Organization for Standardization \\[4pt]
-  \textbf{ISMS} -     \> Information Security Management System \\[4pt]
-  \textbf{CIA} -      \> Confidentiality, Integrity, Availability \\[4pt]
-  \textbf{LLM} -      \> Large Language Model \\[4pt]
-  \textbf{APT} -      \> Advanced Persistent Threat \\[4pt]
-  \textbf{IP} -       \> Internet Protocol \\[4pt]
+  \textbf{ISMS} -    \> Information Security Management System \\[4pt]
+  \textbf{CIA} -     \> Confidentiality, Integrity, Availability \\[4pt]
+  \textbf{LLM} -     \> Large Language Model \\[4pt]
+  \textbf{APT} -     \> Advanced Persistent Threat \\[4pt]
+  \textbf{IP} -     \> Internet Protocol \\[4pt]
   \textbf{CDN} -      \> Content Delivery Network \\[4pt]
-  \textbf{CICIDS} -   \> Canadian Institute for Cybersecurity Intrusion Detection System \\[4pt]
-  \textbf{XAI} -      \> Explainable Artificial Intelligence \\[4pt]
-  \textbf{RQ} -       \> Research Question \\[4pt]
-  \textbf{UML} -      \> Unified Modelling Language \\
+  \textbf{CICIDS} -  \> Canadian Institute for Cybersecurity Intrusion Detection System \\[4pt]
+  \textbf{XAI} -     \> Explainable Artificial Intelligence \\[4pt]
+  \textbf{RQ} -      \> Research Question \\[4pt]
+  \textbf{UML} -     \> Unified Modelling Language \\
 \end{tabbing}
 
 
@@ -224,6 +232,8 @@ decision-making of this system or any type of intelligent system.
 Machine Learning, Log Analysis, Digital Systems, Autonomous Decision-Making.}
 
 % ── Table of Contents ─────────────────────────────────────────────────────────
+\renewcommand{\contentsname}{Table of Contents}
+\renewcommand{\listfigurename}{Table of Figures}
 \tableofcontents
 \clearpage
 
@@ -301,6 +311,28 @@ raised in this thesis are:
 
   \item[\textbf{RQ4:}] How effective is intrusion detection and event correlation in early
   mitigation of sequential or multi-scale attacks?
+\end{itemize}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Research Hypotheses}
+% ──────────────────────────────────────────────────────────────────────────────
+
+The previous section considered all the questions posed and where the research will be based,
+regarding the main points of where the research will be conducted. However, there need to be
+hypotheses raised, in order to properly evaluate them during the implementation and testing part
+of this thesis's product.
+
+\begin{itemize}
+  \item[\textbf{H1:}] An Artificial Intelligence-driven XDR system can identify suspicious logs
+  and security events through telemetry collection, continuous monitoring and automated
+  AI-driven analysis with a good accuracy level.
+
+  \item[\textbf{H2:}] The integration of Machine Learning algorithms greatly improves the
+  effectiveness of an XDR solution compared to current systems that mostly use rule-based
+  mechanisms.
+
+  \item[\textbf{H3:}] Event correlation and Intrusion Detection (ID) can identify threats that
+  launch large scaled attacks throughout the whole network, affecting all devices.
 \end{itemize}
 
 % ──────────────────────────────────────────────────────────────────────────────
@@ -1459,20 +1491,34 @@ The implemented system utilizes open-source technologies, specifically listed in
 \ref{tab:software_env} below.
 
 \begin{table}[H]
-  \centering
-  \caption{Software Environment}
-  \label{tab:software_env}
-  \begin{tabular}{>{\bfseries}p{5.5cm} p{8cm}}
-    \toprule
-    Technology / Framework & Usage \\
-    \midrule
-    Python, Flask, SQLite      & Training \& Testing Models + Backend Setup \\
-    React JS, TypeScript, Node JS & Framework for Dashboard Development \\
-    Virtual Box                & Ubuntu Server setup and initialization \\
-    Visual Studio Code, Git    & Developer Env, Versioning, Solution Management \\
-    Wazuh, Sysmon              & Open-Source XDR \& SIEM Software used for log collection \& Deep Telemetry \\
-    \bottomrule
-  \end{tabular}
+\centering
+\caption{Software Environment Used in the Implementation}
+\label{tab:software_env}
+
+\renewcommand{\arraystretch}{1.3}
+
+\begin{tabular}{p{5cm} p{9cm}}
+\toprule
+\textbf{Technology / Framework} & \textbf{Purpose} \\
+\midrule
+
+Python, Flask, SQLite &
+Machine learning model training, anomaly detection, backend API development, and data storage. \\
+
+React JS, TypeScript, Node.js &
+Development of the monitoring dashboard and user interface components. \\
+
+Oracle VirtualBox &
+Deployment and hosting of the Ubuntu-based server environment used for the simulation. \\
+
+Visual Studio Code, Git &
+Source code development, version control, and project management. \\
+
+Wazuh, Sysmon &
+Collection, monitoring, and analysis of endpoint and system telemetry data. \\
+
+\bottomrule
+\end{tabular}
 \end{table}
 
 Python was used to build the backend service responsible for log processing, AI-driven anomaly
@@ -1910,7 +1956,32 @@ have adapted is the AI anomaly detection layer, an upgrade to the usual rule-bas
 that these current systems use to autonomously detect anomalies. The simulated system was
 established through the use of a Windows and Ubuntu Machine, which helped a lot with log
 generation, and after being deployed, was tested for test scenarios in a white box testing
-manner, where it successfully detected anomalies and assigned appropriate responses to them.
+manner, where it successfully detected anomalies and assigned appropriate responses to them. All
+the functionalities that this system offers are built in a component-like manner, making every
+part of this system autonomous and easily scalable if future fine tuning needs to be done. It
+combines AI, ML and rule-based mechanisms to create an XDR solution, solid enough to detect any
+anomalies that the network's endpoints encounter, correlating and cross-referencing threat
+patterns with known TTPs from MITRE ATT\&CK, as well as simulated responses that should be
+applied to the endpoint/s.
+
+The integration of these ML algorithms helped to shape the AI-driven detection component, where
+the Random Forest classifier achieved optimal performance metrics, with an accuracy of 98.75\%, a
+precision of 96.88\% and a F1-score of 98.41\%. Meanwhile the Isolation Forest model provided
+the analysis of outliers, something that this algorithm is specifically focused on, to detect
+anomalies and output them with specific impact levels.
+
+The implementation phase also provided an answer to the research questions posed about the
+response layer. This layer generated responses based on context given by other layers, making it
+a perfect demonstration of how security solutions operate in real-world conditions.
+
+Another research question that was answered was the functionality provided by the event
+correlation layer, which successfully found links between events and visualized possible attack
+chains on the network.
+
+Many existing academic works focus on anomaly detection and event correlation, but purely
+rule-based. However, the AI-driven detection layer offers more coverage for known threats, with
+training happening continuously, where the database is updated and all the logs can be re-used
+to train the model, along with existing robust datasets.
 
 Despite the success of the implementation of this system, there are certain limitations worth
 mentioning that might not fully replicate the XDR solutions that are commonly used. One of them
