@@ -42,7 +42,11 @@
 \renewcommand{\headrulewidth}{0.4pt}
 
 % ── Section Title Formatting ──────────────────────────────────────────────────
-\titleformat{\chapter}[hang]{\Large\bfseries}{Chapter \thechapter.}{0.5em}{}
+\titleformat{\chapter}[display]
+  {\centering\Huge\bfseries}
+  {\chaptername\ \thechapter}
+  {1ex}
+  {}
 \titleformat{\section}[hang]{\large\bfseries}{\thesection}{0.5em}{}
 \titleformat{\subsection}[hang]{\normalsize\bfseries}{\thesubsection}{0.5em}{}
 \titlespacing*{\chapter}{0pt}{20pt}{15pt}
@@ -119,37 +123,37 @@ articles as well as all kinds of online material. The work contained in this the
 previously submitted for examination.
 
 \vspace{3cm}
-\noindent Date \underline{\hspace{1.5cm}} / \underline{\hspace{1.5cm}} /
-\underline{\hspace{2cm}} \hfill Signature \underline{\hspace{5cm}}
+\noindent Date \underline{\hspace{0.5cm}} / \underline{\hspace{0.5cm}} /
+\underline{\hspace{1cm}} \hfill Signature \underline{\hspace{5cm}}
 
 % ── List of Abbreviations ─────────────────────────────────────────────────────
 \chapter*{List of Abbreviations}
 \addcontentsline{toc}{chapter}{List of Abbreviations}
 
 \begin{tabbing}
-  \hspace{3.2cm} \= \kill
-  \textbf{AI}       \> Artificial Intelligence \\[4pt]
-  \textbf{ML}       \> Machine Learning \\[4pt]
-  \textbf{XDR}      \> Extended Detection and Response \\[4pt]
-  \textbf{EDR}      \> Endpoint Detection and Response \\[4pt]
-  \textbf{SIEM}     \> Security Information Event Management \\[4pt]
-  \textbf{SOAR}     \> Security Orchestration, Automation and Response \\[4pt]
-  \textbf{IDS}      \> Intrusion Detection System \\[4pt]
-  \textbf{IPS}      \> Intrusion Prevention System \\[4pt]
-  \textbf{TTP}      \> Tactics, Techniques, Procedures \\[4pt]
-  \textbf{NIST}     \> National Institute of Standards and Technology \\[4pt]
-  \textbf{NIST CSF} \> NIST Cybersecurity Framework \\[4pt]
-  \textbf{ISO}      \> International Organization for Standardization \\[4pt]
-  \textbf{ISMS}     \> Information Security Management System \\[4pt]
-  \textbf{CIA}      \> Confidentiality, Integrity, Availability \\[4pt]
-  \textbf{LLM}      \> Large Language Model \\[4pt]
-  \textbf{APT}      \> Advanced Persistent Threat \\[4pt]
-  \textbf{IP}       \> Internet Protocol \\[4pt]
-  \textbf{CDN}      \> Content Delivery Network \\[4pt]
-  \textbf{CICIDS}   \> Canadian Institute for Cybersecurity Intrusion Detection System \\[4pt]
-  \textbf{XAI}      \> Explainable Artificial Intelligence \\[4pt]
-  \textbf{RQ}       \> Research Question \\[4pt]
-  \textbf{UML}      \> Unified Modelling Language \\
+  \hspace{2.5cm} \= \kill
+  \textbf{AI}  -     \> Artificial Intelligence \\[4pt]
+  \textbf{ML}  -    \> Machine Learning \\[4pt]
+  \textbf{XDR} -     \> Extended Detection and Response \\[4pt]
+  \textbf{EDR} -    \> Endpoint Detection and Response \\[4pt]
+  \textbf{SIEM} -    \> Security Information Event Management \\[4pt]
+  \textbf{SOAR} -    \> Security Orchestration, Automation and Response \\[4pt]
+  \textbf{IDS} -      \> Intrusion Detection System \\[4pt]
+  \textbf{IPS} -      \> Intrusion Prevention System \\[4pt]
+  \textbf{TTP} -      \> Tactics, Techniques, Procedures \\[4pt]
+  \textbf{NIST} -     \> National Institute of Standards and Technology \\[4pt]
+  \textbf{NIST CSF} - \> NIST Cybersecurity Framework \\[4pt]
+  \textbf{ISO} -      \> International Organization for Standardization \\[4pt]
+  \textbf{ISMS} -     \> Information Security Management System \\[4pt]
+  \textbf{CIA} -      \> Confidentiality, Integrity, Availability \\[4pt]
+  \textbf{LLM} -      \> Large Language Model \\[4pt]
+  \textbf{APT} -      \> Advanced Persistent Threat \\[4pt]
+  \textbf{IP} -       \> Internet Protocol \\[4pt]
+  \textbf{CDN} -      \> Content Delivery Network \\[4pt]
+  \textbf{CICIDS} -   \> Canadian Institute for Cybersecurity Intrusion Detection System \\[4pt]
+  \textbf{XAI} -      \> Explainable Artificial Intelligence \\[4pt]
+  \textbf{RQ} -       \> Research Question \\[4pt]
+  \textbf{UML} -      \> Unified Modelling Language \\
 \end{tabbing}
 
 
