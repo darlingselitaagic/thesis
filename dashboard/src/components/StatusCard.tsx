@@ -1,10 +1,7 @@
-type Props = {
-  title: string
-  status: "Running" | "Connected" | "Disconnected" | "Stopped"
-  description: string
-}
+import type { StatusProps } from "../types"
 
-export default function StatusCard({ title, status, description }: Props) {
+
+export default function StatusCard({ title, status, description }: StatusProps) {
   const good = status === "Running" || status === "Connected"
 
   return (

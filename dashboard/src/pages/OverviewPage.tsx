@@ -2,15 +2,8 @@ import { useEffect, useState } from "react"
 import { Activity, AlertTriangle, Server, Shield } from "lucide-react"
 import PageHeader from "../components/PageHeader"
 import MetricCard from "../components/MetricCards"
-import {
-  getWazuhAgents,
-  getLogHistory,
-  getXdrResponses,
-  syncWazuhLogs,
-  type WazuhAgent,
-  type XdrAlert,
-  type XdrResponse
-} from "../services/api"
+import { getWazuhAgents, getLogHistory, getXdrResponses, syncWazuhLogs } from "../services/api"
+import type { XdrAlert, XdrResponse, WazuhAgent } from "../types"
 
 export default function OverviewPage() {
   const [alerts, setAlerts] = useState<XdrAlert[]>([])

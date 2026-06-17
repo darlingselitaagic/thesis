@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react"
 import PageHeader from "../components/PageHeader"
-import { getXdrCorrelations, type XdrCorrelation } from "../services/api"
+import { getXdrCorrelations } from "../services/api"
+import type { XdrCorrelation } from "../types"
+import { useAnalysis } from "../hooks/useThreatAnalysis" 
 
-function getRiskLabel(score: number) {
-  if (score >= 85) return "Critical"
-  if (score >= 60) return "High"
-  if (score >= 30) return "Medium"
-  return "Low"
-}
 
 export default function ThreatAnalysisPage() {
   const [correlations, setCorrelations] = useState<XdrCorrelation[]>([])
+  const { getRiskLabel } = useAnalysis()
 
   useEffect(() => {
     getXdrCorrelations().then(setCorrelations)

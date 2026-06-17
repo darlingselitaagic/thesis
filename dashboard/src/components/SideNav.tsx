@@ -1,12 +1,8 @@
 import {History, LayoutDashboard, Server, Shield } from "lucide-react"
-import type { PageName } from "../App"
+import type { SideNavProps } from "../types"
 
-type Props = {
-  activePage: PageName
-  onNavigate: (page: PageName) => void
-}
 
-export default function SideNav({ activePage, onNavigate }: Props) {
+export default function SideNav({ activePage, onNavigate }: SideNavProps) {
   return (
     <aside className="side-nav">
       <div className="brand">

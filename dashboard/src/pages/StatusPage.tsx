@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import PageHeader from "../components/PageHeader"
 import StatusCard from "../components/StatusCard"
-import { getWazuhAgents, type WazuhAgent } from "../services/api"
+import { getWazuhAgents } from "../services/api"
+import type { WazuhAgent } from "../types"
 
 export default function SystemStatusPage() {
   const [agents, setAgents] = useState<WazuhAgent[]>([])

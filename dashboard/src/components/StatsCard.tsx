@@ -1,10 +1,4 @@
-import type { ReactNode } from "react"
-
-type StatsCardProps = {
-  title: string
-  value: number | string
-  icon?: ReactNode
-}
+import type { StatsCardProps } from "../types";
 
 export default function StatsCard({ title, value, icon }: StatsCardProps) {
   return (
