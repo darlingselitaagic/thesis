@@ -42,6 +42,26 @@ function getInvestigationInfo(alert: XdrAlert): InvestigationInfo {
     }
   }
 
+  if (text.includes("powershell") || text.includes("encodedcommand") || text.includes("base64")) {
+  return {
+    attackStage: "Execution",
+    responseReason:
+      "PowerShell executed a potentially suspicious command. Encoded PowerShell commands are frequently used by attackers to hide malicious activity and evade detection mechanisms.",
+
+    mitre: [
+      "T1059.001 - PowerShell"
+    ],
+
+    nextSteps: [
+      "Review the executed PowerShell command",
+      "Determine whether the command was encoded",
+      "Inspect PowerShell Script Block logs",
+      "Identify the parent process that launched PowerShell",
+      "Validate whether the activity was authorized"
+    ]
+  }
+}
+
   if (text.includes("failed login") || text.includes("logon failure") || text.includes("bad password")) {
     return {
       attackStage: "Credential Access",

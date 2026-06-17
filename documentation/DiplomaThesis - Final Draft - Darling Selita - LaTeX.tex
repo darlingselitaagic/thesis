@@ -37,14 +37,26 @@
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{\small AI-Driven XDR Simulation System}
-\lhead{\small Diploma Thesis -- Preliminary Report}
+\lhead{\small Diploma Thesis}
 \cfoot{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 
 % ── Section Title Formatting ──────────────────────────────────────────────────
-\titleformat{\chapter}[hang]{\Large\bfseries}{Chapter \thechapter.}{0.5em}{}
-\titleformat{\section}[hang]{\large\bfseries}{\thesection}{0.5em}{}
-\titleformat{\subsection}[hang]{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+\titleformat{\chapter}[display]
+  {\centering\Large\bfseries}
+  {Chapter \thechapter}
+  {1ex}
+  {}
+\titleformat{\section}
+  {\centering\large\bfseries}
+  {\thesection}
+  {0.5em}
+  {}
+\titleformat{\subsection}
+  {\centering\normalsize\bfseries}
+  {\thesubsection}
+  {0.5em}
+  {}
 \titlespacing*{\chapter}{0pt}{20pt}{15pt}
 \titlespacing*{\section}{0pt}{14pt}{8pt}
 \titlespacing*{\subsection}{0pt}{10pt}{6pt}
@@ -60,21 +72,98 @@
 }
 
 % ── Document ──────────────────────────────────────────────────────────────────
-\begin{document}
 
 % ── Title Page ────────────────────────────────────────────────────────────────
+
+\begin{document}
+
 \begin{titlepage}
   \centering
-  \vspace*{2cm}
-  {\LARGE\bfseries Diploma Thesis -- Preliminary Report\par}
-  \vspace{1.5cm}
-  {\Large\bfseries AI-Driven XDR (Extended Detection and Response) Simulation System\par}
+
+  % ── University Logo ──
+  \includegraphics[width=5cm]{university_logo.png}\\[0.4cm]
+
+  % ── Faculty & Department ──
+  {\normalsize\bfseries FACULTY OF COMPUTER SCIENCE AND IT\\[0.2cm]
+  COMPUTER ENGINEERING DEPARTMENT\par}
+
+  \vspace{0.3cm}
+  \noindent\rule{\textwidth}{0.4pt}
+  \vspace{0.3cm}
+
+  {\small\bfseries MASTER OF SCIENCE IN ARTIFICIAL INTELLIGENCE WITH PROFILE:\\
+  CYBERSECURITY\par}
+
+  \vspace{1.2cm}
+
+  % ── Thesis Title ──
+  {\LARGE\bfseries DIPLOMA THESIS\par}
+
+  \vspace{0.8cm}
+
+  {\Large\bfseries TITLE: DESIGN AND SIMULATION OF AN AI-DRIVEN EXTENDED DETECTION
+  AND RESPONSE (XDR) SYSTEM\par}
+
   \vspace{2cm}
-  {\large Darling Selita\par}
-  \vspace{1cm}
-  {\normalsize 2026\par}
+
+  % ── Names table ──
+  \begin{tabular}{@{}l@{\hspace{2cm}}l@{}}
+    \textbf{DEAN OF THE FACULTY}  & Prof.\ Asoc.\ Dr.\ Ligor NIKOLLA \\[0.5cm]
+    \textbf{HEAD OF DEPARTMENT}   & Dr.\ Elton DOMNORI \\[0.5cm]
+    \textbf{SUPERVISOR}           & Dr.\ Igli HAKRAMA \\[0.5cm]
+    \textbf{CANDIDATE}            & Darling SELITA \\
+  \end{tabular}
+
   \vfill
+
+  {\large\bfseries TIRANA 2026\par}
 \end{titlepage}
+
+% ── Declaration ───────────────────────────────────────────────────────────────
+\chapter*{Declaration of Authenticity}
+\addcontentsline{toc}{chapter}{Declaration of Authenticity}
+
+I, Darling Selita, hereby declare that I wrote this thesis on my own and did not use any unnamed
+sources or aid. Thus, to the best of my knowledge and belief, this thesis contains no material
+previously published or written by another person except where due reference is made by correct
+citation. This includes any thoughts taken over directly or indirectly from printed books and
+articles as well as all kinds of online material. The work contained in this thesis has not been
+previously submitted for examination.
+
+\vspace{3cm}
+\noindent Date \underline{\hspace{0.5cm}} / \underline{\hspace{0.5cm}} /
+\underline{\hspace{1cm}} \hfill Signature \underline{\hspace{5cm}}
+
+% ── List of Abbreviations ─────────────────────────────────────────────────────
+\chapter*{List of Abbreviations}
+\addcontentsline{toc}{chapter}{List of Abbreviations}
+
+\begin{tabbing}
+  \hspace{2.7cm} \= \kill
+  \textbf{AI} -      \> Artificial Intelligence \\[4pt]
+  \textbf{ML} -       \> Machine Learning \\[4pt]
+  \textbf{XDR} -      \> Extended Detection and Response \\[4pt]
+  \textbf{EDR} -      \> Endpoint Detection and Response \\[4pt]
+  \textbf{SIEM} -     \> Security Information Event Management \\[4pt]
+  \textbf{SOAR} -     \> Security Orchestration, Automation and Response \\[4pt]
+  \textbf{IDS} -      \> Intrusion Detection System \\[4pt]
+  \textbf{IPS} -      \> Intrusion Prevention System \\[4pt]
+  \textbf{TTP} -      \> Tactics, Techniques, Procedures \\[4pt]
+  \textbf{NIST} -    \> National Institute of Standards and Technology \\[4pt]
+  \textbf{NIST CSF} - \> NIST Cybersecurity Framework \\[4pt]
+  \textbf{ISO} -      \> International Organization for Standardization \\[4pt]
+  \textbf{ISMS} -    \> Information Security Management System \\[4pt]
+  \textbf{CIA} -     \> Confidentiality, Integrity, Availability \\[4pt]
+  \textbf{LLM} -     \> Large Language Model \\[4pt]
+  \textbf{APT} -     \> Advanced Persistent Threat \\[4pt]
+  \textbf{IP} -     \> Internet Protocol \\[4pt]
+  \textbf{CDN} -      \> Content Delivery Network \\[4pt]
+  \textbf{CICIDS} -  \> Canadian Institute for Cybersecurity Intrusion Detection System \\[4pt]
+  \textbf{XAI} -     \> Explainable Artificial Intelligence \\[4pt]
+  \textbf{RQ} -      \> Research Question \\[4pt]
+  \textbf{UML} -     \> Unified Modelling Language \\
+\end{tabbing}
+
 
 % ── Abstract (Albanian) ───────────────────────────────────────────────────────
 \chapter*{Abstrakt}
@@ -143,6 +232,8 @@ decision-making of this system or any type of intelligent system.
 Machine Learning, Log Analysis, Digital Systems, Autonomous Decision-Making.}
 
 % ── Table of Contents ─────────────────────────────────────────────────────────
+\renewcommand{\contentsname}{Table of Contents}
+\renewcommand{\listfigurename}{Table of Figures}
 \tableofcontents
 \clearpage
 
@@ -220,6 +311,28 @@ raised in this thesis are:
 
   \item[\textbf{RQ4:}] How effective is intrusion detection and event correlation in early
   mitigation of sequential or multi-scale attacks?
+\end{itemize}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Research Hypotheses}
+% ──────────────────────────────────────────────────────────────────────────────
+
+The previous section considered all the questions posed and where the research will be based,
+regarding the main points of where the research will be conducted. However, there need to be
+hypotheses raised, in order to properly evaluate them during the implementation and testing part
+of this thesis's product.
+
+\begin{itemize}
+  \item[\textbf{H1:}] An Artificial Intelligence-driven XDR system can identify suspicious logs
+  and security events through telemetry collection, continuous monitoring and automated
+  AI-driven analysis with a good accuracy level.
+
+  \item[\textbf{H2:}] The integration of Machine Learning algorithms greatly improves the
+  effectiveness of an XDR solution compared to current systems that mostly use rule-based
+  mechanisms.
+
+  \item[\textbf{H3:}] Event correlation and Intrusion Detection (ID) can identify threats that
+  launch large scaled attacks throughout the whole network, affecting all devices.
 \end{itemize}
 
 % ──────────────────────────────────────────────────────────────────────────────
@@ -569,7 +682,7 @@ sub-systems can work as a combination of different security tools, in order to d
 determine whether an attack is coming, and then execute response actions with minimal to no
 human intervention. One of the key advantages of these AI/ML systems is their ability to adapt
 to incoming threats, then develop specific patterns of response actions to deal with them,
-therefore evolving alongside the threats they are fighting against~\cite{ref19b}.
+therefore evolving alongside the threats they are fighting against~\cite{ref19_fig}.
 
 \begin{figure}[htbp]
   \centering
@@ -1339,7 +1452,556 @@ to modify or change parts of it without worrying about the whole architecture.
 % ══════════════════════════════════════════════════════════════════════════════
 % References
 % ══════════════════════════════════════════════════════════════════════════════
-\begin{thebibliography}{40}
+% ══════════════════════════════════════════════════════════════════════════════
+\chapter{System Implementation}
+% ══════════════════════════════════════════════════════════════════════════════
+
+This chapter covers the usage of the whole architecture laid out in the previous chapter. It is
+comprised of all the technologies used for model training and testing, as well as the backend and
+frontend of the XDR simulation system. Every section will explain the implementation of a
+specific layer or component, including snapshots of the code and the deployed solution.
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Hardware Environment}
+% ──────────────────────────────────────────────────────────────────────────────
+
+The AI-driven XDR system was developed and implemented using a Windows 11 workstation, in which
+was also installed and initialized a virtualized Ubuntu Server, where the Wazuh Manager was
+deployed.
+
+The host Windows machine was responsible for software development, system dashboard creation as
+well as endpoint simulation (the log collection mechanism takes logs from both the virtualized
+Ubuntu Server and the Windows Machine). The virtualized server is run through the use of Oracle
+VirtualBox. The combination of two different sources for logs not only simulates a real-world
+implementation of an XDR system but also helps simulate how the correlation of different events
+from different endpoints may come from the same scaled attack.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{fig28_VirtualBox.png}
+  \caption{Virtual Box Instance}
+  \label{fig:virtualbox}
+\end{figure}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Software Environment}
+% ──────────────────────────────────────────────────────────────────────────────
+
+The implemented system utilizes open-source technologies, specifically listed in Table
+\ref{tab:software_env} below.
+
+\begin{table}[H]
+\centering
+\caption{Software Environment Used in the Implementation}
+\label{tab:software_env}
+
+\renewcommand{\arraystretch}{1.3}
+
+\begin{tabular}{p{5cm} p{9cm}}
+\toprule
+\textbf{Technology / Framework} & \textbf{Purpose} \\
+\midrule
+
+Python, Flask, SQLite &
+Machine learning model training, anomaly detection, backend API development, and data storage. \\
+
+React JS, TypeScript, Node.js &
+Development of the monitoring dashboard and user interface components. \\
+
+Oracle VirtualBox &
+Deployment and hosting of the Ubuntu-based server environment used for the simulation. \\
+
+Visual Studio Code, Git &
+Source code development, version control, and project management. \\
+
+Wazuh, Sysmon &
+Collection, monitoring, and analysis of endpoint and system telemetry data. \\
+
+\bottomrule
+\end{tabular}
+\end{table}
+
+Python was used to build the backend service responsible for log processing, AI-driven anomaly
+detection, threat scoring, correlation and response action simulation. Flask, a lightweight REST
+API framework, provided a layer of communication between the web-based dashboard and the backend.
+
+SQLite was used to store the logs after processing and standardization, in order to keep them as
+memory references, simulating a real-world XDR system where logs are stored indefinitely so that
+analysts can review and try to understand and detect patterns or anomalies.
+
+On the Windows machine, the telemetry was generated using Sysmon, a Windows system service used
+to generate logs that capture more information than normal events, which were then passed to
+Wazuh, and after processing and AI anomaly detection, passed to the SQLite database.
+
+For the web-based dashboard, the development framework is comprised of Node JS, React JS and
+TypeScript. These technologies are used in many modern front-end solutions, making them a perfect
+fit for the design requirements.
+
+Lastly, Visual Studio Code was used as the development environment, since it offers support for
+many languages and frameworks adapting to both backend and frontend technologies, along with Git
+which was used for versioning and source code management.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig29_vsCodeInterface.png}
+  \caption{Visual Studio Code Dev Environment}
+  \label{fig:vscode}
+\end{figure}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{System Architecture Implementation}
+% ──────────────────────────────────────────────────────────────────────────────
+
+Following the before-mentioned architecture of the proposed XDR solution in Chapter 3, this
+section covers the implementation of the architecture with a component-based approach, separating
+the different layers that data goes through for processing, anomaly detection, AI, correlation and
+response decision engines, finishing up with the database layer.
+
+The first step of the implemented workflow is the Wazuh SIEM, which is an open-source
+cybersecurity solution that can be used to manage a number of endpoints' logs and events by
+centralizing the log collection server, therefore paving the way for anomaly detection between
+different events and logs.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig30_wazuhThreatIntelligencePanel.png}
+  \caption{Wazuh Threat Hunting}
+  \label{fig:wazuh_threat_hunting}
+\end{figure}
+
+After the logs are collected, the next step is to normalize and standardize them, especially logs
+generated by Sysmon as they tend to be more detailed and are generated for every step of an event
+or process running, so that the trained AI model better understands the data being fed to it.
+Once normalized, the data goes through the AI Anomaly Detection layer, where each log is
+evaluated and given a threat score, which gives the XDR system the ability to classify and
+prioritize specific threats based on impact and risk. After detection, the correlation layer
+checks the logs to find similarities, be it the same time interval or a nearly identical
+signature. It also tries to pair it with current MITRE ATT\&CK TTP patterns, in order to give
+more detailed context to the analysts. After correlation, the response simulation layer is set in
+motion, where the response is simulated based on factors such as threat score and risk/impact,
+with responses varying from continuous monitoring to process termination or endpoint isolation.
+
+All the logs are stored in SQLite, a lightweight database service provided in Python with a limit
+of 25 TB of storage, that will store all the logs for analysts to review and understand the
+decision-making of the AI-driven detection. The dashboard is the last part of this
+component-based solution, giving the analyst a good view of the data with a user-friendly
+interface, communicating with the backend using an API service built with Flask.
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Log Collection, Sysmon \& Database Service}
+% ──────────────────────────────────────────────────────────────────────────────
+
+Wazuh is an integrated XDR and SIEM system, capable of not only threat collection and processing
+but also features of cybersecurity solutions such as threat hunting, risk assessment and endpoint
+monitoring and management. Due to it being open-source and free to use, it was an overall optimal
+choice, since the only functionality taken from this system was the log collection and
+centralization.
+
+As mentioned in the previous sections, another tool was used for log generation, specifically on
+the Windows Machine, to collect more detailed logs that reference not only normal alerts or
+messages from processes and events, but also event timelines and command execution timelines,
+which help the analyst gain more insight on how certain commands are executed, and if the command
+was suspicious or justified by parallel processes running that require specific resources. This
+tool is called Sysmon, a Windows Event Tool, free to use and specifically used in cybersecurity
+environments to enrich the data with much more exact telemetry.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig31_wazuhConfig.png}
+  \caption{Wazuh Installation \& Configuration}
+  \label{fig:wazuh_install}
+\end{figure}
+
+All of the logs are generated by the Wazuh Agents installed on both machines, which monitor
+ongoing events and processes, translating them into readable logs, from process execution to
+event termination and results. All the generated alerts by Wazuh were selected with the use of
+predefined rules, where specific information was extracted (timeline of process or event,
+executed command, time taken to respond, time taken to execute, termination, approval chain).
+Rather than directly taking the logs from both endpoints, this solution was used to create the
+standard of logs and keep them readable and understandable by both the AI model and analysts.
+
+Using Flask, an endpoint was exposed for all of the types of generated Wazuh alerts, making it
+easier to display them on the dashboard.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig32_exposedEndpoints.png}
+  \caption{Exposed API Endpoints}
+  \label{fig:api_endpoints}
+\end{figure}
+
+In conclusion, Wazuh was one of, if not the integral part of this setup, used not only for log
+collection, but also for storage and log processing to create a unified source of log generation
+that can later be modified if more specific event alerts are required for analysis.
+
+The second part of this solution includes a database service, implemented to keep a persistent
+storage of the extracted and processed logs, in order to optimize the communication between the
+web-based dashboard and the backend pulling data from the exposed API endpoints.
+
+The selected DB service provider is SQLite, primarily used for the fact that it is a software
+library running directly inside the solution, rather than a separated network that would require
+exposing an endpoint to access it, writing data to a file that includes not only the data itself,
+but also the table structure, or even the relations, indexes and triggers if the schema includes
+more than one table. In the case of this solution, this schema included only one table, with
+indexing on columns such as timestamp, endpoint information, event type and classification
+fields, reducing the redundancy and flooding of the data with unimportant repeated events.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig33_dbService.png}
+  \caption{Database Service SQLite}
+  \label{fig:sqlite}
+\end{figure}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Artificial Intelligence Detection Engine}
+% ──────────────────────────────────────────────────────────────────────────────
+
+The AI detection layer is the analytical component of this solution, with its primary goal being
+the detection of anomalies and abnormalities from the various alerts it receives, as well as
+helping in the response action decision by providing context from well-known security threats that
+contain similar occurrences. The structure of this layer consists of two different models,
+trained with different kinds of data, that work with each other to provide accuracy and efficiency
+of the system, as well as a rule-based mechanism of classifying severity and impact of a
+potential threat.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{fig34_isolationForestTP.png}
+  \caption{Isolation Forest Algorithm}
+  \label{fig:isolation_forest}
+\end{figure}
+
+The first component of this layer is the Isolation Forest model, a tree-based algorithm meant to
+be trained with un-labelled data, which uses a tree-like structure to detect any outliers from
+splitting different features of data, and singling out tree nodes that are shorter than the
+median. The data used to train this model was taken from the Canadian Institute of Cybersecurity
+Intrusion Detection dataset (CICIDS2017)~\cite{ref41}, containing network traffic features with
+enough context to simulate how an unsupervised learning algorithm can better understand if
+something is suspicious.
+
+The second component of the layer is a similar tree-based algorithm called Random Forest, a
+supervised learning algorithm that can only be trained with labelled data. The data used to train
+this algorithm was taken from generated and processed Wazuh alerts coming from both machines. All
+the data is labelled with event attributes, such as severity level, threat score, event type and
+endpoint information, to determine whether an event is abnormal or not.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{fig35_randomForestTP.png}
+  \caption{Random Forest Algorithm}
+  \label{fig:random_forest}
+\end{figure}
+
+Besides these two models, a rule-based mechanism was also implemented, using keywords that are
+usually interpreted as suspicious actions such as a PowerShell Command Execution or privilege
+escalation alert that might insinuate a possible incoming threat. Based on that, the threat score
+of that event is assigned based on the expected severity.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig36_ruleBasedDetection.png}
+  \caption{Rule-based mechanism of detection}
+  \label{fig:rule_based_detection}
+\end{figure}
+
+This kind of approach is made so that all events must pass through all layers before being
+finally labelled as potential threats or not, thus lowering the chance of a false positive or a
+true negative.
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Threat Scoring \& Correlation Layer}
+% ──────────────────────────────────────────────────────────────────────────────
+
+After detection, the filtered Wazuh generated alerts go through the threat scoring and
+rule-based correlation. In this layer, all the filtered alerts are further analysed for any kind
+of connection between events, either executed in the same endpoint, or in parallel on two or more
+endpoints, which is essential in detecting scaled attacks that target the entire network.
+
+The first step is assigning a threat score to all events, giving higher scores to events related
+to suspicious activity such as PowerShell command execution, user privilege access, privilege
+escalation, suspicious file creation or even abnormal loads of internet activity in out-of-work
+hours. After assigning the threat score, all of them are categorized on different levels, with
+Low being the low risk \& impact events, followed by Medium, High and Critical being the highest,
+much like the CVSS 2.0 standard of threat categorization.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{fig37_threatScoring.png}
+  \caption{Threat Scoring Method}
+  \label{fig:threat_scoring}
+\end{figure}
+
+After threat evaluation, the next step is to find whether there is any correlation between
+events, analysed on different features such as event timestamp and information, providing a clear
+view of events that alone might be normal but if combined may indicate suspicious activity, all
+of this being done using a rule-based mechanism. After correlation, additional context is added
+with the help of the previously used MITRE ATT\&CK knowledge base, giving an experienced analyst
+the needed context to identify the TTPs based on well-known threat actors that operate currently.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig38_correlationClass.png}
+  \caption{Rule-Based Correlation}
+  \label{fig:rule_based_correlation}
+\end{figure}
+
+After passing through both components, the output of these alerts is stored along with the
+correlation score, other related events, identified attack stages (results may not be accurate)
+and recommended response actions, which will be used in the response layer to help determine the
+kind of response needed to be implemented.
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Decision \& Response Engine}
+% ──────────────────────────────────────────────────────────────────────────────
+
+The Decision \& Response Engine is the last step of the simulated XDR system, representing the
+action taken by the system when facing a threat. Previous sections have covered the threat
+scoring \& additional context per event and threat categorization, as well as suggested response
+actions. All of these are taken into account by the decision engine, which further analyses the
+outcomes, and determines the course of action for a specific event, or for a few correlated
+suspicious events.
+
+After threats are given the initial score and then categorized, they are prioritized, with
+low-risk threats being marked as normal machine activity, medium being kept under further
+surveillance for future similar events, and high \& critical following actions such as threat
+escalation and investigation or even extreme measures such as endpoint isolation from the network.
+
+Events that are already marked as suspicious by the AI detection layer are considered more
+important to deal with, and take precedence over the other security events, skipping the
+rule-based mechanism that determines the severity and impact that these events might have, and
+taking proper action.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig39_recommendResponse.png}
+  \caption{Recommended Response Rules}
+  \label{fig:response_rules}
+\end{figure}
+
+It should be noted that these responses are generated by the system, but there are no actual
+actions taken against the machines producing the logs, which can be a significant addition to the
+build-up of this thesis. However, this should still be supervised by a human, as the data that
+the detection models have been trained with, and the rule-based mechanisms, might not be fully
+inclusive or absolute, making the system obsolete against newer threats at least until an adapted
+LLM for security events trained with contemporaneous data is established.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig40_responseDecisionRBM.png}
+  \caption{Response Decisions from Rule-based Mechanism}
+  \label{fig:response_decisions}
+\end{figure}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Web-based Dashboard Implementation}
+% ──────────────────────────────────────────────────────────────────────────────
+
+The web-based Dashboard is the only part of this system that the user (analyst) can interact
+with. It was developed using React \& TypeScript as mentioned, displaying all the information
+taken from REST API endpoints created through Python's Flask, with main content taken from the
+database source implemented with SQLite.
+
+It has four different sections, each representing a functionality that current XDR solutions
+possess, making it a perfect simulated interactable system for analysts:
+
+\begin{itemize}
+  \item Overview Dashboard Page
+  \item Log History
+  \item Threat Analysis \& Correlation
+  \item System Status
+\end{itemize}
+
+The overview dashboard displays data cards that visualize the latest pulled events from Wazuh
+Agents, critical or important alerts, active endpoints and most importantly the decision \&
+response actions that have been simulated.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{fig41_dashboardPage.png}
+  \caption{Overview Dashboard}
+  \label{fig:overview_dashboard}
+\end{figure}
+
+The threat analysis page displays the correlation score results, enriched with MITRE ATT\&CK
+TTPs that correspond to the correlated events and recommended response actions.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{fig42_threatAnalysisPage.png}
+  \caption{Threat Analysis Page}
+  \label{fig:threat_analysis}
+\end{figure}
+
+The log history page displays a detailed view of all the logs, that analysts can use to further
+analyse all the events one by one manually, or understand how the AI detection service executed
+its analysis of the logs. All the logs are filterable and indexable, making it easier for the
+analyst to trace specific logs, or batches of logs coming from a machine, and the ability to
+extract the filtered data for other external tools to analyse these suspicious events.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{fig43_logHistoryPage.png}
+  \caption{Log History Page}
+  \label{fig:log_history}
+\end{figure}
+
+The system status page is mainly used for testing purposes, displaying a live connection update
+to all the layers that are part of this system, as well as the machines feeding the logs.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{fig44_systemStatusPage.png}
+  \caption{System Status Page}
+  \label{fig:system_status}
+\end{figure}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Testing \& Validation}
+% ──────────────────────────────────────────────────────────────────────────────
+
+The last section of this chapter covers testing and validation of the implemented XDR system,
+focusing on the way it processes logs and the accuracy of the implemented ML algorithms used for
+detection, and the effectiveness of the rule-based mechanisms that incur predefined rules when
+identifying threat potential, assigning score and finding correlation between events \& logs.
+
+The two models used for the AI Detection layer were Isolation Forest and Random Forest, as
+mentioned in the previous sections. For Isolation Forest, there is no precise metric used to
+measure the accuracy of this component, but for Random Forest, a supervised learning algorithm,
+the metrics can be generated, keeping in mind that this layer has been trained with data collected
+by the two endpoints that this XDR system is connected to. The dataset is smaller than the one
+used for Isolation Forest, with an approximate 400 records used to train this dataset, but with
+continuous telemetry generation, the model can be adjusted and provide accurate results even with
+large amounts of data.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{fig45_randomForestScore.png}
+  \caption{Metrics for trained Random Forest Model}
+  \label{fig:rf_metrics}
+\end{figure}
+
+\subsection*{Testing Scenario 1 --- Successful Login Attempt (Windows Machine)}
+
+\textbf{Test Description \& Expected Results:} The user successfully logs in on the designated
+endpoint, and the AI-driven detection layer correctly classifies it as a Low-Risk event.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig46_loginLowScore.png}
+  \caption{Low Level Scoring by the AI Detection layer}
+  \label{fig:low_risk}
+\end{figure}
+
+\subsection*{Testing Scenario 2 --- Numerous Consequential Invalid Login Attempts (Windows Machine)}
+
+\textbf{Test Description \& Expected Results:} The user fails to log in numerous times on the
+machine due to invalid credentials; the AI-driven detection layer correctly classifies it as a
+High-Risk event, indicating escalation and endpoint monitoring.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig47_invalidLoginHS.png}
+  \caption{AI-driven Detection layer correctly predicting anomaly on login attempts}
+  \label{fig:high_risk_login}
+\end{figure}
+
+\subsection*{Testing Scenario 3 --- PowerShell Command Execution (Windows Machine)}
+
+\textbf{Test Description \& Expected Results:} Executed PowerShell commands that explore access
+and privileges of the current logged-in user should be indicated and marked as potentially
+suspicious, following with further escalation and monitoring.
+
+\textbf{Executed Commands:}
+\begin{itemize}
+  \item \texttt{whoami}
+  \item \texttt{powershell -ExecutionPolicy Bypass -Command "Get-Process"}
+  \item \texttt{powershell -ExecutionPolicy Bypass -EncodedCommand SQBFAFgA}
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig48_encodedPowerShellCommand.png}
+  \caption{Encoded Command Execution (Log successfully detected as suspicious)}
+  \label{fig:encoded_cmd}
+\end{figure}
+
+\subsection*{Testing Scenario 4 --- Privilege Escalation, Higher Threat Score (Ubuntu Machine)}
+
+\textbf{Test Description \& Expected Results:} Execution of privilege escalation commands on the
+Ubuntu Machine should indicate that the logged-in user tried to gain knowledge on its privileges
+and access to the system.
+
+\textbf{Executed Commands:}
+\begin{itemize}
+  \item \texttt{sudo whoami}
+  \item \texttt{sudo tail -n 20 /var/log/auth.log}
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig49_privilegeEscalationUbu.png}
+  \caption{Privilege Escalation Ubuntu Machine}
+  \label{fig:privilege_escalation}
+\end{figure}
+
+% ══════════════════════════════════════════════════════════════════════════════
+\chapter{Conclusion}
+% ══════════════════════════════════════════════════════════════════════════════
+
+This thesis was aimed at giving an implementation of an AI-driven XDR simulated system. The
+proposed solution integrates all the components and elements that current XDR systems offer (log
+collection and centralization, event processing and so on), but one thing that not all systems
+have adapted is the AI anomaly detection layer, an upgrade to the usual rule-based mechanisms
+that these current systems use to autonomously detect anomalies. The simulated system was
+established through the use of a Windows and Ubuntu Machine, which helped a lot with log
+generation, and after being deployed, was tested for test scenarios in a white box testing
+manner, where it successfully detected anomalies and assigned appropriate responses to them. All
+the functionalities that this system offers are built in a component-like manner, making every
+part of this system autonomous and easily scalable if future fine tuning needs to be done. It
+combines AI, ML and rule-based mechanisms to create an XDR solution, solid enough to detect any
+anomalies that the network's endpoints encounter, correlating and cross-referencing threat
+patterns with known TTPs from MITRE ATT\&CK, as well as simulated responses that should be
+applied to the endpoint/s.
+
+The integration of these ML algorithms helped to shape the AI-driven detection component, where
+the Random Forest classifier achieved optimal performance metrics, with an accuracy of 98.75\%, a
+precision of 96.88\% and a F1-score of 98.41\%. Meanwhile the Isolation Forest model provided
+the analysis of outliers, something that this algorithm is specifically focused on, to detect
+anomalies and output them with specific impact levels.
+
+The implementation phase also provided an answer to the research questions posed about the
+response layer. This layer generated responses based on context given by other layers, making it
+a perfect demonstration of how security solutions operate in real-world conditions.
+
+Another research question that was answered was the functionality provided by the event
+correlation layer, which successfully found links between events and visualized possible attack
+chains on the network.
+
+Many existing academic works focus on anomaly detection and event correlation, but purely
+rule-based. However, the AI-driven detection layer offers more coverage for known threats, with
+training happening continuously, where the database is updated and all the logs can be re-used
+to train the model, along with existing robust datasets.
+
+Despite the success of the implementation of this system, there are certain limitations worth
+mentioning that might not fully replicate the XDR solutions that are commonly used. One of them
+being the complexity and magnitude of the usual XDR solutions, that monitor a large number of
+endpoints, by integrating and correlating events between this large number of endpoints, making
+the systems even more complex. Another limitation is the datasets, as mentioned in the Literature
+Review chapter, the dataset that was used to train one of the models was relatively small,
+because this dataset was created by generated logs from this system's connected endpoints.
+Lastly, the response actions that are decided for a specific anomaly detected are not executable
+and cannot access the endpoint directly, but rather simulate the process of assigning this
+response to that endpoint by labelling the action and the course of reason.
+
+However, these limitations only leave room for future improvements, starting with more enriched
+datasets that can be used to fine-tune the models for better accuracy of detection. The response
+layer of this solution could be able to directly access the endpoint and execute the response
+action appropriately, as well as providing better context for correlation between events. Another
+important improvement of this thesis would be to containerize and ship this implemented system
+as one package using services like Docker, to add support for cloud-based environments.
+
+\begin{thebibliography}{41}
 
 \bibitem{ref1}
 MITRE ATT\&CK, ``Phishing (T1566),'' \textit{MITRE ATT\&CK\textregistered}.
@@ -1422,11 +2084,6 @@ cybersecurity, healthcare -- an overview,'' \textit{Multimedia Tools and Applica
 vol.\ 83, no.\ 19, pp.\ 57317--57345, 2024.
 
 \bibitem{ref19_fig}
-C.\ Kyrkou et al., ``Towards artificial-intelligence-based cybersecurity for robustifying
-automated driving systems against camera sensor attacks,'' in \textit{Proc.\ 2020 IEEE
-Computer Society Annual Symposium on VLSI (ISVLSI)}, 2020.
-
-\bibitem{ref19b}
 C.\ Kyrkou et al., ``Towards artificial-intelligence-based cybersecurity for robustifying
 automated driving systems against camera sensor attacks,'' in \textit{Proc.\ 2020 IEEE
 Computer Society Annual Symposium on VLSI (ISVLSI)}, 2020.
@@ -1530,6 +2187,13 @@ Models,'' \textit{Hyperight}, Mar.\ 3, 2025. [Online]. Available:
 
 \bibitem{ref40}
 A.\ Hui, S.\ Ahn, C.\ Lye, and J.\ Deng, ``Ethical Challenges of Artificial Intelligence in Health Care: A Narrative Review,'' \textit{Ethics in Biology, Engineering and Medicine}, vol.\ 12, 2022. doi: 10.1615/EthicsBiologyEngMed.2022041580.
+
+
+\bibitem{ref41}
+I.\ Sharafaldin, A.\ H.\ Lashkari, and A.\ A.\ Ghorbani, ``Toward Generating a New
+Intrusion Detection Dataset and Intrusion Traffic Characterization,'' in \textit{Proc.\ 4th
+International Conference on Information Systems Security and Privacy (ICISSP)},
+Portugal, January 2018.
 
 \end{thebibliography}
 
