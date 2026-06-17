@@ -13,5 +13,4 @@ backend-ai-engine/models/
 backend-ai-engine/venv/
 dataset/
 *.csv
-*.pkl
 backend-ai-engine/models/
