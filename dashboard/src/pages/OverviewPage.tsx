@@ -1,30 +1,18 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { Activity, AlertTriangle, Server, Shield } from "lucide-react"
 import PageHeader from "../components/PageHeader"
 import MetricCard from "../components/MetricCards"
-import { getWazuhAgents, getLogHistory, getXdrResponses, syncWazuhLogs } from "../services/api"
-import type { XdrAlert, XdrResponse, WazuhAgent } from "../types"
+import { useOverview } from "../hooks/useOverview"
+
 
 export default function OverviewPage() {
-  const [alerts, setAlerts] = useState<XdrAlert[]>([])
-  const [responses, setResponses] = useState<XdrResponse[]>([])
-  const [agents, setAgents] = useState<WazuhAgent[]>([])
+
+  const {alerts, responses, critical, activeAgents, recentAlerts, recentResponses, refreshLogsOverview} = useOverview()
 
 useEffect(() => {
-  syncWazuhLogs().then(() => {
-    Promise.all([getLogHistory(), getXdrResponses(), getWazuhAgents()])
-      .then(([alertsData, responsesData, agentsData]) => {
-        setAlerts(alertsData)
-        setResponses(responsesData)
-        setAgents(agentsData)
-      })
-  })
-}, [])
+  refreshLogsOverview()
+}, [refreshLogsOverview])
 
-  const critical = alerts.filter(a => a.classification === "Critical").length
-  const activeAgents = agents.filter(a => a.status === "active").length
-  const recentAlerts = alerts.slice(0, 6)
-  const recentResponses = responses.slice(0, 4)
 
   return (
     <>

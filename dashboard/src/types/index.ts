@@ -1,6 +1,7 @@
 import type { ReactNode } from "react"
 import type { PageName } from "../App"
 
+// Metric Cards Props
 export type MetricCardsProps = {
   title: string
   value: string | number
@@ -9,28 +10,33 @@ export type MetricCardsProps = {
   danger?: boolean
 }
 
+// Page Header Props
 export type HeaderProps = {
   title: string
   subtitle: string
 }
 
+// Side Navbar Props
 export type SideNavProps = {
   activePage: PageName
   onNavigate: (page: PageName) => void
 }
 
+// Stats Cards Props
 export type StatsCardProps = {
   title: string
   value: number | string
   icon?: ReactNode
 }
 
+// Status Engine Props
 export type StatusProps = {
   title: string
   status: "Running" | "Connected" | "Disconnected" | "Stopped"
   description: string
 }
 
+// API Props
 export type XdrAlert = {
   id: number
   timestamp: string
@@ -98,4 +104,12 @@ export type WazuhAgent = {
     platform: string
     version: string
   }
+}
+
+// Log History Types
+export type InvestigationInfo = {
+  attackStage: string
+  responseReason: string
+  mitre: string[]
+  nextSteps: string[]
 }
