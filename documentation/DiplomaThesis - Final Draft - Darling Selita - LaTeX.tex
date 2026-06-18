@@ -16,7 +16,7 @@
 \usepackage{fancyhdr}
 \usepackage{caption}
 \usepackage{microtype}
-\usepackage{lmodern}
+\usepackage{newtxtext,newtxmath}
 \usepackage{csquotes}
 \usepackage{float}
 \usepackage{xurl}
@@ -42,31 +42,31 @@
 \renewcommand{\headrulewidth}{0.4pt}
 
 % ── Section Title Formatting ──────────────────────────────────────────────────
-\titleformat{\chapter}[display]
-  {\centering\Large\bfseries}
-  {Chapter \thechapter}
-  {1ex}
+\titleformat{\chapter}[hang]
+  {\centering\fontsize{16pt}{18pt}\bfseries}
+  {Chapter \thechapter\ --}
+  {0.5em}
   {}
 \titleformat{\section}
-  {\centering\large\bfseries}
+  {\centering\fontsize{14pt}{16pt}\selectfont\bfseries}
   {\thesection}
   {0.5em}
   {}
 \titleformat{\subsection}
-  {\centering\normalsize\bfseries}
+  {\centering\fontsize{12pt}{14pt}\selectfont\bfseries}
   {\thesubsection}
   {0.5em}
   {}
-\titlespacing*{\chapter}{0pt}{20pt}{15pt}
+\titlespacing*{\chapter}{0pt}{-10pt}{20pt}
 \titlespacing*{\section}{0pt}{14pt}{8pt}
 \titlespacing*{\subsection}{0pt}{10pt}{6pt}
 
 % ── Hyperref Setup ────────────────────────────────────────────────────────────
 \hypersetup{
   colorlinks=true,
-  linkcolor=blue,
+  linkcolor=black,
   urlcolor=blue,
-  citecolor=blue,
+  citecolor=black,
   pdftitle={AI-Driven XDR Simulation System},
   pdfauthor={Darling Selita}
 }
@@ -97,12 +97,13 @@
   \vspace{1.2cm}
 
   % ── Thesis Title ──
-  {\LARGE\bfseries DIPLOMA THESIS\par}
+  {\fontsize{26pt}{28pt}\selectfont\bfseries DIPLOMA THESIS\par}
 
   \vspace{0.8cm}
 
-  {\Large\bfseries TITLE: DESIGN AND SIMULATION OF AN AI-DRIVEN EXTENDED DETECTION
-  AND RESPONSE (XDR) SYSTEM\par}
+{\fontsize{20pt}{22pt}\selectfont\bfseries
+TITLE: DESIGN AND SIMULATION OF AN AI-DRIVEN EXTENDED DETECTION
+AND RESPONSE (XDR) SYSTEM\par}
 
   \vspace{2cm}
 
@@ -118,6 +119,8 @@
 
   {\large\bfseries TIRANA 2026\par}
 \end{titlepage}
+
+\pagenumbering{gobble}
 
 % ── Declaration ───────────────────────────────────────────────────────────────
 \chapter*{Declaration of Authenticity}
@@ -138,31 +141,32 @@ previously submitted for examination.
 \chapter*{List of Abbreviations}
 \addcontentsline{toc}{chapter}{List of Abbreviations}
 
-\begin{tabbing}
-  \hspace{2.7cm} \= \kill
-  \textbf{AI} -      \> Artificial Intelligence \\[4pt]
-  \textbf{ML} -       \> Machine Learning \\[4pt]
-  \textbf{XDR} -      \> Extended Detection and Response \\[4pt]
-  \textbf{EDR} -      \> Endpoint Detection and Response \\[4pt]
-  \textbf{SIEM} -     \> Security Information Event Management \\[4pt]
-  \textbf{SOAR} -     \> Security Orchestration, Automation and Response \\[4pt]
-  \textbf{IDS} -      \> Intrusion Detection System \\[4pt]
-  \textbf{IPS} -      \> Intrusion Prevention System \\[4pt]
-  \textbf{TTP} -      \> Tactics, Techniques, Procedures \\[4pt]
-  \textbf{NIST} -    \> National Institute of Standards and Technology \\[4pt]
-  \textbf{NIST CSF} - \> NIST Cybersecurity Framework \\[4pt]
-  \textbf{ISO} -      \> International Organization for Standardization \\[4pt]
-  \textbf{ISMS} -    \> Information Security Management System \\[4pt]
-  \textbf{CIA} -     \> Confidentiality, Integrity, Availability \\[4pt]
-  \textbf{LLM} -     \> Large Language Model \\[4pt]
-  \textbf{APT} -     \> Advanced Persistent Threat \\[4pt]
-  \textbf{IP} -     \> Internet Protocol \\[4pt]
-  \textbf{CDN} -      \> Content Delivery Network \\[4pt]
-  \textbf{CICIDS} -  \> Canadian Institute for Cybersecurity Intrusion Detection System \\[4pt]
-  \textbf{XAI} -     \> Explainable Artificial Intelligence \\[4pt]
-  \textbf{RQ} -      \> Research Question \\[4pt]
-  \textbf{UML} -     \> Unified Modelling Language \\
-\end{tabbing}
+\begin{spacing}{1.5}
+\begin{flushleft}
+\textbf{AI} - Artificial Intelligence\\
+\textbf{ML} - Machine Learning\\
+\textbf{XDR} - Extended Detection and Response\\
+\textbf{EDR} - Endpoint Detection and Response\\
+\textbf{SIEM} - Security Information and Event Management\\
+\textbf{SOAR} - Security Orchestration, Automation and Response\\
+\textbf{IDS} - Intrusion Detection System\\
+\textbf{IPS} - Intrusion Prevention System\\
+\textbf{TTP} - Tactics, Techniques, and Procedures\\
+\textbf{NIST} - National Institute of Standards and Technology\\
+\textbf{NIST CSF} - NIST Cybersecurity Framework\\
+\textbf{ISO} - International Organization for Standardization\\
+\textbf{ISMS} - Information Security Management System\\
+\textbf{CIA} - Confidentiality, Integrity, and Availability\\
+\textbf{LLM} - Large Language Model\\
+\textbf{APT} - Advanced Persistent Threat\\
+\textbf{IP} - Internet Protocol\\
+\textbf{CDN} - Content Delivery Network\\
+\textbf{CICIDS} - Canadian Institute for Cybersecurity Intrusion Detection System\\
+\textbf{XAI} - Explainable Artificial Intelligence\\
+\textbf{RQ} - Research Question\\
+\textbf{UML} - Unified Modeling Language
+\end{flushleft}
+\end{spacing}
 
 
 % ── Abstract (Albanian) ───────────────────────────────────────────────────────
@@ -239,9 +243,12 @@ Machine Learning, Log Analysis, Digital Systems, Autonomous Decision-Making.}
 
 \listoffigures
 \clearpage
-
+\listoftables
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
 % ══════════════════════════════════════════════════════════════════════════════
-\chapter{Introduction}
+\chapter{INTRODUCTION}
 % ══════════════════════════════════════════════════════════════════════════════
 
 In modern times, technology hasn't been stopping one bit, and has kept climbing the steps of
@@ -377,7 +384,7 @@ reliability and availability. This will also help when drawing conclusions, in o
 any setbacks that will need further research or development.
 
 % ══════════════════════════════════════════════════════════════════════════════
-\chapter{Literature Review}
+\chapter{LITERATURE REVIEW}
 % ══════════════════════════════════════════════════════════════════════════════
 
 This chapter represents a view of the existing literature for Cybersecurity solutions and defence
@@ -1061,7 +1068,7 @@ to infiltrate the system and how to follow a specific set of actions in order to
 large-scale threats.
 
 % ══════════════════════════════════════════════════════════════════════════════
-\chapter{System Design and Architecture}
+\chapter{SYSTEM DESIGN AND ARCHITECTURE}
 % ══════════════════════════════════════════════════════════════════════════════
 
 This chapter contains insights about the design, development and simulation of the proposed
@@ -1453,7 +1460,7 @@ to modify or change parts of it without worrying about the whole architecture.
 % References
 % ══════════════════════════════════════════════════════════════════════════════
 % ══════════════════════════════════════════════════════════════════════════════
-\chapter{System Implementation}
+\chapter{SYSTEM IMPLEMENTATION}
 % ══════════════════════════════════════════════════════════════════════════════
 
 This chapter covers the usage of the whole architecture laid out in the previous chapter. It is
@@ -1946,7 +1953,7 @@ and access to the system.
 \end{figure}
 
 % ══════════════════════════════════════════════════════════════════════════════
-\chapter{Conclusion}
+\chapter{CONCLUSION}
 % ══════════════════════════════════════════════════════════════════════════════
 
 This thesis was aimed at giving an implementation of an AI-driven XDR simulated system. The
@@ -2014,7 +2021,11 @@ Guide}, NIST Special Publication 800-61r3. Available:
 \url{https://doi.org/10.6028/NIST.SP.800-61r3}
 
 \bibitem{ref3}
-\url{https://doi.org/10.63282/3050-9262.IJAIDSML-V6I1P111}
+P.\ Paidy,
+``Unified Threat Detection Platform with AI, SIEM, and XDR,''
+\textit{International Journal of Advanced Intelligence in Data Science and Machine Learning (IJAIDSML)},
+vol.\ 6, no.\ 1, pp.\ 95--104, Jan.\ 2025,
+doi: \url{https://doi.org/10.63282/3050-9262.IJAIDSML-V6I1P111}.
 
 \bibitem{ref4}
 N.\ N.\ A.\ Sjarif, S.\ Chuprat, M.\ N.\ Mahrin, N.\ A.\ Ahmad, A.\ Ariffin, and
@@ -2025,6 +2036,7 @@ F.\ M.\ Senan, ``Endpoint Detection and Response: Why Use Machine Learning?,''
 Microsoft, ``What is XDR?,'' \textit{Microsoft Security}.
 [Online]. Available:
 \url{https://www.microsoft.com/en-us/security/business/security-101/what-is-xdr}
+[Accessed: May 20, 2026].
 
 \bibitem{ref6}
 D.\ Pissanidis and K.\ Demertzis, ``Integrating AI/ML in Cybersecurity: An Analysis of Open
@@ -2032,8 +2044,11 @@ XDR Technology and Its Application in Intrusion Detection and System Log Managem
 \textit{Preprints}, Dec.\ 2023, doi: 10.20944/preprints202312.0205.v1.
 
 \bibitem{ref7}
-MITRE ATT\&CK, ``MITRE ATT\&CK Framework,'' \textit{MITRE ATT\&CK\textregistered}.
-[Online]. Available: \url{https://attack.mitre.org/}
+MITRE ATT\&CK, ``MITRE ATT\&CK Framework,''
+\textit{MITRE ATT\&CK\textregistered}.
+[Online]. Available:
+\url{https://attack.mitre.org/}
+[Accessed: May 20, 2026].
 
 \bibitem{ref8}
 N.\ Mohamed, ``Artificial intelligence and machine learning in cybersecurity: a deep dive into
@@ -2061,8 +2076,11 @@ reinforcement learning approaches for malware detection,'' \textit{International
 Innovative Research in Technology (IJIRT)}, vol.\ 12, no.\ 4, pp.\ 2793--2801, Sep.\ 2025.
 
 \bibitem{ref13}
-Canadian Institute for Cybersecurity, ``CICIDS2017 Dataset.'' [Online]. Available:
+Canadian Institute for Cybersecurity,
+``CICIDS2017 Dataset.''
+[Online]. Available:
 \url{https://www.unb.ca/cic/datasets/ids-2017.html}
+[Accessed: May 20, 2026].
 
 \bibitem{ref14}
 S.\ T.\ Erukude, V.\ C.\ Marella, and S.\ R.\ Veluru, ``AI-Driven Cybersecurity Threats:
@@ -2101,7 +2119,10 @@ I.\ Kim et al., ``Toward Robust Security Orchestration and Automated Response,''
 \textit{Information}, 2025.
 
 \bibitem{ref23}
-M.\ S.\ Arsanjani, ``The Anatomy of Agentic AI,'' \textit{Medium}, 2023. Available:
+M. S. Arsanjani,
+``The Anatomy of Agentic AI,''
+\textit{Medium}, 2023.
+[Online]. Available:
 \url{https://dr-arsanjani.medium.com/the-anatomy-of-agentic-ai-0ae7d243d13c}
 [Accessed: May 19, 2026].
 
@@ -2116,7 +2137,9 @@ Scalable and Explainable Cybersecurity Log Analysis,'' \textit{Journal of Cybers
 Privacy}, vol.\ 5, p.\ 55, 2025. \url{https://doi.org/10.3390/jcp5030055}
 
 \bibitem{ref26}
-Skedler, ``What is Explainable AI (XAI)?'' 2023. [Online]. Available:
+Skedler,
+``What is Explainable AI (XAI)?''
+[Online]. Available:
 \url{https://www.skedler.com/blog/what-is-explainable-ai-xai/}
 [Accessed: May 19, 2026].
 
@@ -2126,7 +2149,9 @@ A Taxonomy and Terminology of Attacks and Mitigations}, NIST AI 100-2e2023, 2024
 \url{https://doi.org/10.6028/NIST.AI.100-2e2023}
 
 \bibitem{ref28}
-Simplilearn, ``CIA Triad in Cyber Security,'' 2026. [Online]. Available:
+Simplilearn,
+``CIA Triad in Cyber Security,''
+[Online]. Available:
 \url{https://www.simplilearn.com/cia-triad-in-cyber-security-article}
 [Accessed: May 19, 2026].
 
@@ -2141,25 +2166,43 @@ vol.\ 15, no.\ 02, pp.\ 380--386, 2025.
 doi: \url{https://doi.org/10.30574/wjaets.2025.15.2.0551}
 
 \bibitem{ref31}
-Microsoft, ``What is the MITRE ATT\&CK framework?,'' \textit{Microsoft Security}.
+Microsoft,
+``What is the MITRE ATT\&CK Framework?''
+\textit{Microsoft Security}.
+[Online]. Available:
 \url{https://www.microsoft.com/en-us/security/business/security-101/what-is-mitre-attack-framework}
 [Accessed: May 20, 2026].
 
 \bibitem{ref32}
-IBM, ``What is the MITRE ATT\&CK framework?,'' \textit{IBM Think}.
-\url{https://www.ibm.com/think/topics/mitre-attack} [Accessed: May 20, 2026].
+IBM,
+``What is the MITRE ATT\&CK Framework?''
+\textit{IBM Think}.
+[Online]. Available:
+\url{https://www.ibm.com/think/topics/mitre-attack}
+[Accessed: May 20, 2026].
 
 \bibitem{ref33}
-MITRE Corporation, ``ATT\&CK,'' \textit{MITRE ATT\&CK}. \url{https://attack.mitre.org/}
+MITRE Corporation,
+``ATT\&CK,''
+\textit{MITRE ATT\&CK}.
+[Online]. Available:
+\url{https://attack.mitre.org/}
+[Accessed: May 20, 2026].
 
 \bibitem{ref34}
-National Institute of Standards and Technology (NIST), ``Identify, Protect, Detect, Respond
-and Recover: The NIST Cybersecurity Framework,'' \textit{NIST Taking Measure Blog}.
+National Institute of Standards and Technology (NIST),
+``Identify, Protect, Detect, Respond and Recover:
+The NIST Cybersecurity Framework,''
+\textit{NIST Taking Measure Blog}.
+[Online]. Available:
 \url{https://www.nist.gov/blogs/taking-measure/identify-protect-detect-respond-and-recover-nist-cybersecurity-framework}
 [Accessed: May 20, 2026].
 
 \bibitem{ref35}
-IBM, ``ISO 27001 compliance -- IBM Cloud,'' \textit{IBM Products}.
+IBM,
+``ISO 27001 Compliance -- IBM Cloud,''
+\textit{IBM Products}.
+[Online]. Available:
 \url{https://www.ibm.com/products/cloud/compliance/iso-27001}
 [Accessed: May 20, 2026].
 
@@ -2180,8 +2223,10 @@ Communication and Technology}, vol.\ 8, pp.\ 493--501, 2021.
 doi: 10.5281/zenodo.7028219.
 
 \bibitem{ref39}
-J.\ Jana, ``The AI Black Box: What We're Still Getting Wrong about Trusting Machine Learning
-Models,'' \textit{Hyperight}, Mar.\ 3, 2025. [Online]. Available:
+J. Jana,
+``The AI Black Box: What We're Still Getting Wrong About Trusting Machine Learning Models,''
+\textit{Hyperight}, Mar. 3, 2025.
+[Online]. Available:
 \url{https://hyperight.com/ai-black-box-what-were-still-getting-wrong-about-trusting-machine-learning-models/}
 [Accessed: May 11, 2026].
 
