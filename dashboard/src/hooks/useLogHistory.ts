@@ -236,5 +236,5 @@ return { formatTimestamp, alerts, setAlerts,
     setAlertsPage, endpoints, classifications, eventTypes, setSearch, 
     setEndpoint, setSelectedAlert, setClassification, setEventType,
     setCurrentPage, setRowsPerPage, search, totalPages, selectedInfo,
-    rowsPerPage, exportCsv, filteredAlerts, currentPage, paginatedAlerts, endpoint, eventType, classification }
+    rowsPerPage, exportCsv, filteredAlerts, currentPage, paginatedAlerts, endpoint, eventType, classification, selectedAlert }
 }
