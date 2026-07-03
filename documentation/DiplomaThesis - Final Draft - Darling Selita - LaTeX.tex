@@ -438,7 +438,7 @@ time, also keeping precision and correctness during the decision-making process.
   \label{fig:nist_lifecycle}
 \end{figure}
 
-The other problem that needs to be addressed is the increase of better set-out attacks, that
+As we can see in Figure 2.1, there is a clear architecture and set of rules that are followed for mitigating or facing incidents, starting with preparation (security tools being set up), continuous monitoring, to then continue with containment and lessons learned. However, the problem that needs to be addressed is the increase of better set-out attacks, that
 require a more complex course of action needed to be taken in order to defend and respond.
 Even with the use of the MITRE ATT\&CK framework, which documents new methods, the responses
 are still delayed and slow due to interpretation or understanding of issues.
@@ -453,13 +453,6 @@ collect log data and perform continuous checks, as well as work in parallel with
 cybersecurity solutions like IDS (Intrusion Detection Systems) and IPS (Intrusion Prevention
 Systems) from which log data is also taken. Most SIEMs use a centralized language, translating
 the logs from their native language into one unified language~\cite{ref3}.
-
-\begin{figure}[H]
-  \centering
-   \includegraphics[width=0.8\textwidth]{fig2_threat_detection_evolution.png}
-  \caption{Evolution of Threat Detection~\cite{ref3}}
-  \label{fig:evolution_detection}
-\end{figure}
 
 SIEMs have been used for years, but as noted before, the technology advancements have made it
 even more difficult to keep up with new and sophisticated threats. SIEMs remain a good choice for
@@ -477,13 +470,6 @@ However, EDR offers a more centralized view of the data but is limited to a sing
 a small number of endpoints, making it harder to manage a large number of endpoints in real time.
 This is the case for most organizations, which have many devices---not just computers, but
 servers and CDNs as well---thus bringing out the limitations of this technology.
-
-\begin{figure}[htbp]
-  \centering
-   \includegraphics[width=0.8\textwidth]{fig3_edr_methodology.png}
-  \caption{EDR Work Methodology~\cite{ref4}}
-  \label{fig:edr_methodology}
-\end{figure}
 
 % ──────────────────────────────────────────────────────────────────────────────
 \section{Extended Detection and Response (XDR)}
@@ -557,7 +543,7 @@ offering innovative solutions to detect and mitigate cyber threats~\cite{ref9}.
   \label{fig:ai_ml_techniques}
 \end{figure}
 
-AI and ML are recognized as effective tools that enhance cybersecurity systems and allow for
+As illustrated on the figure above, which gives a clear overview of the most used techniques, AI and ML are recognized as effective tools that enhance cybersecurity systems and allow for
 real-time analytics and decision-making while supporting applications such as intrusion detection,
 malware detection and network security~\cite{ref10}. AI gives systems the ability to think and
 reason just like humans, incorporating pattern-recognition and problem-solving. In the vast world
@@ -570,6 +556,8 @@ unsupervised and reinforcement learning~\cite{ref11}.
   \caption{Zero-Day Detection Rate by Approach~\cite{ref11}}
   \label{fig:zero_day_detection}
 \end{figure}
+
+The Figure above shows a distinction between the capabilities that supervised and unsupervised methods offer, with unsupervised methods giving more support due to its nature of predicting the unpredictable and being able to understand much more faster and better a new threat, and also get an understanding of how it operates.
 
 % ──────────────────────────────────────────────
 \subsection{Learning Methods Overview}
@@ -614,6 +602,8 @@ risks in the areas of cybersecurity, privacy, and public trust~\cite{ref14}.
   Strategies~\cite{ref14}}
   \label{fig:ai_threats_taxonomy}
 \end{figure}
+
+
 
 % ──────────────────────────────────────────────────────────────────────────────
 \section{Log Analysis and Automated Response Systems}
@@ -804,10 +794,10 @@ systems, as the decisions of these systems should be fully explainable to ensure
 accountability~\cite{ref25}.
 
 \begin{figure}[htbp]
-  \centering
-   \includegraphics[width=0.75\textwidth]{fig11_xai_vs_blackbox.png}
-  \caption{Explainable AI vs.\ Blackbox AI~\cite{ref26}}
-  \label{fig:xai_blackbox}
+    \centering
+    \includegraphics[width=\textwidth]{fig11_xai_vs_blackbox.png}
+    \caption{Explainable AI vs.\ Blackbox AI~\cite{ref26}}
+    \label{fig:xai_blackbox}
 \end{figure}
 
 % ──────────────────────────────────────────────
@@ -902,13 +892,6 @@ detecting suspicious patterns throughout all connected platforms.
 It is also worth noting that the TTPs, characteristic of MITRE ATT\&CK and the way their
 information is organized, make the use of this data for training AI models much more feasible.
 
-\begin{figure}[H]
-  \centering
-   \includegraphics[width=0.8\textwidth]{fig14_mitre_attack.png}
-  \caption{The MITRE ATT\&CK Framework~\cite{ref33}}
-  \label{fig:mitre_attack}
-\end{figure}
-
 % ──────────────────────────────────────────────
 \subsection{NIST Cybersecurity Framework and XDR}
 % ──────────────────────────────────────────────
@@ -989,7 +972,7 @@ occurrence. The decision process of these tools is impossible to interpret~\cite
 \begin{figure}[htbp]
   \centering
    \includegraphics[width=0.75\textwidth]{fig17_blackbox_xai.png}
-  \caption{Black Box Concept vs.\ Explainable AI~\cite{ref40}}
+  \caption{Black Box Concept vs Explainable AI~\cite{ref40}}
   \label{fig:blackbox_xai}
 \end{figure}
 
