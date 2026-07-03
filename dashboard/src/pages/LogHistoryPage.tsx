@@ -1,17 +1,16 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import PageHeader from "../components/PageHeader"
 import { ArrowLeft, ArrowRight, Sheet } from "lucide-react"
-import type { XdrAlert } from "../types"
 import { useLogHistory } from "../hooks/useLogHistory"
 
 export default function LogHistoryPage() {
 
-  const [selectedAlert, setSelectedAlert] = useState<XdrAlert | null>(null)
   const { formatTimestamp, setAlertsPage,
     alerts, classifications, eventTypes, endpoints, setSearch, 
     setEndpoint, setClassification, setEventType, setCurrentPage, setRowsPerPage,
     search, filteredAlerts, selectedInfo, totalPages, currentPage, exportCsv,
-    rowsPerPage, paginatedAlerts, endpoint, eventType, classification } = useLogHistory()
+    rowsPerPage, paginatedAlerts, endpoint, eventType, classification, selectedAlert,
+    setSelectedAlert, } = useLogHistory()
 
   useEffect(() => {
     setAlertsPage()
@@ -190,20 +189,20 @@ export default function LogHistoryPage() {
             <div className="investigation-grid">
               <div className="modal-section">
                 <span>Attack Stage</span>
-                <p>{selectedInfo.attackStage}</p>
+                <p>{selectedInfo!.attackStage}</p>
               </div>
 
               <div className="modal-section">
                 <span>Response Reason</span>
-                <p>{selectedInfo.responseReason}</p>
+                <p>{selectedInfo!.responseReason}</p>
               </div>
             </div>
 
             <div className="modal-section">
               <span>MITRE ATT&CK Mapping</span>
-              {selectedInfo.mitre.length > 0 ? (
+              {selectedInfo!.mitre.length > 0 ? (
                 <div className="mitre-list">
-                  {selectedInfo.mitre.map(item => (
+                  {selectedInfo!.mitre.map(item => (
                     <strong key={item}>{item}</strong>
                   ))}
                 </div>
@@ -215,7 +214,7 @@ export default function LogHistoryPage() {
             <div className="modal-section">
               <span>Recommended Analyst Actions</span>
               <ul className="action-list">
-                {selectedInfo.nextSteps.map(step => (
+                {selectedInfo!.nextSteps.map(step => (
                   <li key={step}>{step}</li>
                 ))}
               </ul>
